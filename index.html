@@ -78,8 +78,8 @@ tailwind.config = {
 
 /* ── RESET + BASE ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; }
-html, body { overflow-x: hidden; }
+html { scroll-behavior: auto; -webkit-overflow-scrolling: touch; }
+html, body { overflow-x: hidden; overflow-y: auto; touch-action: pan-y; min-height: 100%; }
 body {
   font-family: 'Titillium Web', sans-serif;
   font-weight: 300;
@@ -340,10 +340,8 @@ p strong { font-weight: 600; color: var(--creme); }
 /* Lock scroll on body when Fase 1 is active */
 body.fase1-locked {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
+  height: 100vh;
+  height: 100dvh;
 }
 
 /* ── FASE 1 CONTENT ────────────────────────────────────────── */
@@ -351,9 +349,10 @@ body.fase1-locked {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 920px;
+  max-width: 100vw;
+  overflow-x: hidden;
   margin: 0 auto;
-  padding: 64px var(--container-px) 24px;
+  padding: 64px 20px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -361,6 +360,7 @@ body.fase1-locked {
   text-align: center;
   gap: 0;
   height: 100%;
+  box-sizing: border-box;
 }
 
 /* ── HERO BADGE ────────────────────────────────────────────── */
@@ -400,14 +400,19 @@ body.fase1-locked {
 .hero-headline {
   position: relative;
   z-index: 1;
-  font-size: clamp(36px, 5.5vw, 76px);
+  font-size: clamp(28px, 4.5vw, 64px);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.01em;
   color: #FFFFFF;
   text-transform: uppercase;
-  max-width: 860px;
-  margin: 0 auto 8px;
+  max-width: min(860px, 90vw);
+  width: 100%;
+  margin: 0 auto 32px;
+  padding: 0 20px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
 }
 .hero-headline .text-terracota { color: var(--terracota); }
 .hero-headline em {
@@ -498,6 +503,7 @@ body.fase1-locked {
   height: 100%;
   object-fit: cover;
   display: block;
+  touch-action: pan-y;
 }
 
 /* Controls bar */
@@ -643,18 +649,27 @@ body.fase1-locked {
 .stars { color: var(--terracota); font-size: 11px; letter-spacing: 2px; margin-bottom: 2px; }
 
 /* ── PHASE 2 ───────────────────────────────────────────────── */
-.phase-2-content { display: none; }
+.phase-2-content {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
 .phase-2-content.is-unlocked {
-  display: block;
-  animation: phase2Reveal 900ms var(--ease-out-expo) forwards;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+  max-height: none;
+  overflow: visible;
 }
 /* Smooth scroll after unlock */
 body.scroll-unlocked {
-  position: static;
-  overflow-y: auto;
-  height: auto;
+  overflow-y: auto !important;
+  height: auto !important;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: none;
+  touch-action: pan-y;
 }
 
 /* ── SCROLL REVEAL ─────────────────────────────────────────── */
@@ -1687,9 +1702,8 @@ body.scroll-unlocked {
 }
 @media (max-width: 480px) {
   .logo-navbar-img { height: 22px; }
-  .hero-headline { font-size: clamp(24px, 7vw, 36px); }
+  .hero-headline { font-size: clamp(24px, 7vw, 36px); padding: 0 16px; }
   .above-social { flex-direction: column; gap: 8px; }
-  .hero-headline-wrap { padding: 16px 12px; }
   .vsl-player { border-radius: 10px; }
   .vsl-big-play-btn { width: 56px; height: 56px; }
   .vsl-vol-slider { display: none; }
@@ -2461,7 +2475,7 @@ body.scroll-unlocked {
     if (unlocked) return;
     unlocked = true;
 
-    // Unlock scroll with smooth behavior
+    // Unlock scroll
     document.body.classList.remove('fase1-locked');
     document.body.classList.add('scroll-unlocked');
 
@@ -2475,14 +2489,23 @@ body.scroll-unlocked {
       phase2Elements[i].style.display = '';
     }
 
-    // Auto-scroll after animation
+    // Auto-scroll after transition completes
     setTimeout(function() {
-      phase2.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 400);
+      try {
+        phase2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch(e) {
+        // Fallback for browsers that don't support smooth
+        var topo = phase2.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: topo, behavior: 'smooth' });
+      }
+    }, 500);
 
-    // Initialize scroll reveal for newly visible elements
-    setTimeout(initRevealObserver, 100);
-    setTimeout(initLabelObserver, 100);
+    // Initialize scroll reveal + counters for newly visible elements
+    setTimeout(function() {
+      initRevealObserver();
+      initLabelObserver();
+      initCounters();
+    }, 800);
   }
 
   // ── PREVIEW MODE ──────────────────────────────────────────
