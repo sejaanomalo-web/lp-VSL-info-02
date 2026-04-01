@@ -272,6 +272,31 @@ p strong { font-weight: 600; color: var(--creme); }
   overflow: hidden;
   background: var(--navy-deep);
 }
+.fase1-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.fase1-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: brightness(0.25) saturate(0.4) contrast(1.1);
+  mix-blend-mode: luminosity;
+}
+.fase1-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(21,15,48,0.92) 0%,
+      rgba(21,15,48,0.75) 40%,
+      rgba(21,15,48,0.85) 70%,
+      rgba(21,15,48,0.95) 100%
+    );
+  mix-blend-mode: normal;
+}
 /* Lock scroll on body when Fase 1 is active */
 body.fase1-locked {
   overflow: hidden;
@@ -1402,6 +1427,12 @@ body.fase1-locked {
 
 <!-- FASE 1 — FULLSCREEN WRAPPER -->
 <div class="fase1-wrapper" id="fase1">
+  <!-- Background photo -->
+  <div class="fase1-bg" aria-hidden="true">
+    <img src="https://lp-info-02.vercel.app/images/palco-prova-social-principal.jpg" alt="" loading="eager">
+    <div class="fase1-bg-overlay"></div>
+  </div>
+
   <div class="fase1-content">
     <!-- HEADLINE -->
     <h1 class="hero-headline">
