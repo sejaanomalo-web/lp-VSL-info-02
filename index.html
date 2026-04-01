@@ -1850,7 +1850,6 @@ body.scroll-unlocked {
           <button class="vsl-ctrl-play" id="vslCtrlPlay" aria-label="Play/Pause">
             <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" id="playIcon"/></svg>
           </button>
-          <span class="vsl-time" id="vslTimeCurrent">0:00</span>
           <div class="vsl-progress-wrap" id="vslProgressWrap">
             <div class="vsl-progress-max" id="vslProgressMax"></div>
             <div class="vsl-progress-played" id="vslProgressPlayed"></div>
@@ -2389,7 +2388,6 @@ body.scroll-unlocked {
   var progressPlayed = document.getElementById('vslProgressPlayed');
   var progressMax = document.getElementById('vslProgressMax');
   var progressSeek = document.getElementById('vslProgressSeek');
-  var timeCurrent = document.getElementById('vslTimeCurrent');
   var volSlider = document.getElementById('vslVolSlider');
   var ctrlVol = document.getElementById('vslCtrlVol');
   var vslHint = document.getElementById('vslHint');
@@ -2480,17 +2478,25 @@ body.scroll-unlocked {
     progressSeek.max = video.duration;
   });
 
-  // ── TIME UPDATE + SCRUBBING LOCK ──────────────────────────
+  // ── TIME UPDATE + ACCELERATED PROGRESS BAR ─────────────────
+  // Bar runs 2x faster until 80%, then slows to finish with the video
   video.addEventListener('timeupdate', function() {
     if (video.currentTime > maxWatched) maxWatched = video.currentTime;
 
     var dur = video.duration || 1;
-    var pctPlayed = (video.currentTime / dur) * 100;
-    var pctMax = (maxWatched / dur) * 100;
-    progressPlayed.style.width = pctPlayed + '%';
-    progressMax.style.width = pctMax + '%';
+    var realPct = video.currentTime / dur; // 0 to 1
+
+    // Accelerated mapping: first 40% of video → 80% of bar, last 60% → 20% of bar
+    var fakePct;
+    if (realPct <= 0.4) {
+      fakePct = (realPct / 0.4) * 0.8; // 0-40% real → 0-80% bar (2x speed)
+    } else {
+      fakePct = 0.8 + ((realPct - 0.4) / 0.6) * 0.2; // 40-100% real → 80-100% bar
+    }
+
+    progressPlayed.style.width = (fakePct * 100) + '%';
+    progressMax.style.width = (fakePct * 100) + '%';
     progressSeek.value = video.currentTime;
-    timeCurrent.textContent = fmt(video.currentTime);
 
     // Check unlock
     if (video.currentTime >= UNLOCK_TIME && !unlocked) {
