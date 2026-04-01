@@ -605,6 +605,12 @@ body.fase1-locked {
   display: block;
   animation: phase2Reveal 900ms var(--ease-out-expo) both;
 }
+/* Smooth scroll after unlock */
+body.scroll-unlocked {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
 
 /* ── SCROLL REVEAL ─────────────────────────────────────────── */
 [data-reveal] {
@@ -959,6 +965,52 @@ body.fase1-locked {
   background: var(--navy);
   overflow: hidden;
 }
+
+/* ── AUTO-SCROLL CAROUSEL ──────────────────────────────────── */
+.carousel-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+  padding: 8px 0 24px;
+}
+.carousel-fade-left,
+.carousel-fade-right {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 5;
+  pointer-events: none;
+}
+.carousel-fade-left { left: 0; }
+.carousel-fade-right { right: 0; }
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(241,218,178,0.2);
+  background: var(--navy-surface);
+  color: rgba(241,218,178,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 200ms, background 200ms, color 200ms;
+  font-size: 18px;
+}
+.carousel-arrow:hover { border-color: var(--terracota); background: var(--terracota); color: #fff; }
+.carousel-arrow--left { left: 8px; }
+.carousel-arrow--right { right: 8px; }
+/* Inverted arrows for cream bg sections */
+.carousel-arrow--inv { border-color: rgba(32,23,71,0.2); background: rgba(32,23,71,0.06); color: rgba(32,23,71,0.6); }
+.carousel-arrow--inv:hover { border-color: var(--terracota); background: var(--terracota); color: #fff; }
+
 .testi-scroll {
   display: flex;
   gap: 24px;
@@ -1481,6 +1533,16 @@ body.fase1-locked {
 .accordion-toggle-line--v { rotate: 90deg; }
 .accordion-toggle.is-open .accordion-toggle-line--v { opacity: 0; scale: 0.55 1; }
 
+/* FAQ accordion-item with orange border */
+.accordion-item {
+  border: 1px solid rgba(211,69,30,0.35);
+  background: var(--creme-faint);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: border-color 300ms;
+}
+.accordion-item.is-open { border-color: rgba(211,69,30,0.6); }
+
 /* ForWho card refined */
 .forwho-card { border-left: 3px solid transparent; }
 .forwho-card__icon { width: 34px; height: 34px; border-radius: 12px; border: 1px solid rgba(211,69,30,0.3); background: rgba(211,69,30,0.1); display: grid; place-items: center; color: #b6401f; flex-shrink: 0; }
@@ -1758,10 +1820,10 @@ body.fase1-locked {
     <div data-reveal>
       <div class="rounded-[1.4rem] border border-brand-terracotta/30 bg-brand-navy-surface p-8">
         <p class="section-label">Sinal crítico</p>
-        <p class="mt-4 text-2xl font-bold uppercase leading-tight text-brand-cream">
+        <p class="mt-4 text-2xl font-bold uppercase leading-tight" style="color:#F1DAB2;">
           Quanto mais conhecimento sem estrutura, maior o risco de ser mal interpretado.
         </p>
-        <p class="mt-6 text-base font-light leading-relaxed text-brand-cream/60">
+        <p class="mt-6 text-base font-light leading-relaxed" style="color:rgba(241,218,178,0.8);">
           Estrutura não engessa sua identidade. Ela sustenta sua presença e amplifica sua autoridade.
         </p>
       </div>
@@ -1836,14 +1898,22 @@ body.fase1-locked {
       </h2>
     </div>
   </div>
-  <div class="testi-scroll" style="margin-top:48px;">
-    <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Fiz o curso com o Diego e poucos dias depois fiz uma live para os colaboradores da minha empresa e foi uma experiência incrível. Coloquei em prática todas as dicas, me senti segura em todos os momentos. Entendi que sou capaz. Espero em breve fazer outro curso com você!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Lívia Soares</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
-    <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Antes do curso a minha cabeça era muito focada em incertezas e indecisões a respeito da minha capacidade. Após o curso, me tornei mais objetiva e confiante e minha autoestima está mais elevada. São muitos os resultados. Meu conselho é pra que todos façam porque vale muito a pena!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Karol Lopes</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
-    <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Fiz um curso de oratória com o Diego com o objetivo principal de ser mais objetiva e focada em minha comunicação. E o Diego conseguiu isso de forma incrível!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Ana Paula Ribeiro</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
-    <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Acabei de participar de um curso de Oratória com o Diego e é transformador. Você vai aprender a desbloquear sua comunicação e Diego consegue fazer isso com perfeição. Obrigado por este curso maravilhoso. Aplausos de pé pra você!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Adriana Fragoso</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
-    <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Gravei meu primeiro story sendo desafiada no curso do Diego Knebel. Aproveito para indicar o trabalho dele porque quem me conhece sabe que, pra eu ter cumprido este desafio, ele é realmente muito bom!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Raquel Hoffmann</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
-    <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Eu tinha muita dificuldade em falar. Não sabia ser objetiva e passar o que havia dentro de mim. Por isso decidi fazer a mentoria. Aprendi a controlar as emoções e a respiração para poder filtrar o que vou falar. Gratidão ao profissional que o Diego é pois é nítido que seu propósito é ajudar vidas a se desbloquearem de dentro pra fora. Meu muito obrigado!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Silvana Freitas</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
-    <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Diego é maravilhoso! Não apenas entrega o produto mas ele mesmo se entrega. Parabéns! Você é maravilhoso!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Claudia Ross</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+  <div class="carousel-wrap" style="margin-top:48px;" id="testiCarousel">
+    <div class="carousel-fade-left" style="background:linear-gradient(to right,#201747,transparent);"></div>
+    <div class="carousel-fade-right" style="background:linear-gradient(to left,#201747,transparent);"></div>
+    <button class="carousel-arrow carousel-arrow--left" data-carousel-dir="1" aria-label="Rolar para a esquerda">&larr;</button>
+    <button class="carousel-arrow carousel-arrow--right" data-carousel-dir="-1" aria-label="Rolar para a direita">&rarr;</button>
+    <div style="overflow:hidden; padding:0 48px;">
+      <div class="carousel-track" data-carousel-track data-speed="0.6">
+        <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Fiz o curso com o Diego e poucos dias depois fiz uma live para os colaboradores da minha empresa e foi uma experiência incrível. Coloquei em prática todas as dicas, me senti segura em todos os momentos. Entendi que sou capaz.&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Lívia Soares</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+        <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Antes do curso a minha cabeça era muito focada em incertezas. Após o curso, me tornei mais objetiva e confiante e minha autoestima está mais elevada. Meu conselho é pra que todos façam porque vale muito a pena!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Karol Lopes</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+        <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Fiz um curso de oratória com o Diego com o objetivo principal de ser mais objetiva e focada em minha comunicação. E o Diego conseguiu isso de forma incrível!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Ana Paula Ribeiro</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+        <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Acabei de participar de um curso de Oratória com o Diego e é transformador. Você vai aprender a desbloquear sua comunicação e Diego consegue fazer isso com perfeição. Aplausos de pé pra você!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Adriana Fragoso</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+        <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Gravei meu primeiro story sendo desafiada no curso do Diego Knebel. Quem me conhece sabe que, pra eu ter cumprido este desafio, ele é realmente muito bom!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Raquel Hoffmann</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+        <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Eu tinha muita dificuldade em falar. Aprendi a controlar as emoções e a respiração para poder filtrar o que vou falar. Gratidão ao profissional que o Diego é!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Silvana Freitas</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+        <article class="testi-card"><p class="text-base font-light italic leading-relaxed text-brand-cream/75">&ldquo;Diego é maravilhoso! Não apenas entrega o produto mas ele mesmo se entrega. Parabéns!&rdquo;</p><div class="mt-5"><p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-terracotta">Claudia Ross</p><p class="mt-0.5 text-xs font-light text-brand-cream/40">Aluna</p></div></article>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2018,12 +2088,12 @@ body.fase1-locked {
   <div class="proof-band-bg"><img src="https://lp-info-02.vercel.app/images/palco-prova-social-principal.jpg" alt="Diego Knebel palestrando para audiência corporativa" loading="lazy"></div>
   <div class="proof-band-overlay"></div>
   <div class="mx-auto max-w-7xl px-6 md:px-10 relative z-10 py-20 md:py-28">
-    <div class="max-w-xl">
+    <div class="max-w-xl" style="text-align:left;">
       <p class="section-label" data-reveal>Prova real</p>
-      <h2 class="mt-4 text-balance text-3xl font-bold uppercase leading-tight text-brand-cream md:text-5xl" data-reveal>
+      <h2 class="mt-4 text-3xl font-bold uppercase leading-tight text-brand-cream md:text-5xl" style="text-align:left;" data-reveal>
         Centenas de profissionais<br><span class="text-brand-terracotta">já transformaram sua voz.</span>
       </h2>
-      <p class="mt-5 text-lg font-light leading-relaxed text-brand-cream/70" data-reveal>
+      <p class="mt-5 text-lg font-light leading-relaxed text-brand-cream/70" style="text-align:left;" data-reveal>
         Em palestras, treinamentos corporativos e mentorias presenciais. O método funciona em qualquer formato, para qualquer audiência.
       </p>
     </div>
@@ -2082,12 +2152,20 @@ body.fase1-locked {
       <h2 class="mt-4 text-balance text-3xl font-bold uppercase leading-tight text-brand-cream md:text-5xl">Veja quem já saiu do caos para a clareza.</h2>
     </div>
   </div>
-  <div class="media-scroll" style="margin-top:48px;">
-    <div class="video-testi-card"><div class="video-testi-thumb"><img src="https://lp-info-02.vercel.app/depoimentos/testimonial-photo-1.jpg" alt="Depoimento em foto de aluno" loading="lazy"></div></div>
-    <div class="video-testi-card" data-video-testi><div class="video-testi-thumb video-testi-thumb--video"><video src="https://lp-info-02.vercel.app/depoimentos/02-depoimento-video.mp4" preload="metadata" playsinline loop></video><button class="play-btn" aria-label="Reproduzir depoimento"></button></div></div>
-    <div class="video-testi-card"><div class="video-testi-thumb"><img src="https://lp-info-02.vercel.app/depoimentos/testimonial-whatsapp-conversa.jpg" alt="Depoimento em conversa de WhatsApp" loading="lazy"></div></div>
-    <div class="video-testi-card" data-video-testi><div class="video-testi-thumb video-testi-thumb--video"><video src="https://lp-info-02.vercel.app/depoimentos/03-depoimento-video.mp4" preload="metadata" playsinline loop></video><button class="play-btn" aria-label="Reproduzir depoimento"></button></div></div>
-    <div class="video-testi-card"><div class="video-testi-thumb"><img src="https://lp-info-02.vercel.app/depoimentos/testimonial-story-luciana.jpg" alt="Depoimento em story da Luciana" loading="lazy"></div></div>
+  <div class="carousel-wrap" style="margin-top:48px;" id="mediaCarousel">
+    <div class="carousel-fade-left" style="background:linear-gradient(to right,#F1DAB2,transparent);"></div>
+    <div class="carousel-fade-right" style="background:linear-gradient(to left,#F1DAB2,transparent);"></div>
+    <button class="carousel-arrow carousel-arrow--left carousel-arrow--inv" data-carousel-dir="1" aria-label="Rolar para a esquerda">&larr;</button>
+    <button class="carousel-arrow carousel-arrow--right carousel-arrow--inv" data-carousel-dir="-1" aria-label="Rolar para a direita">&rarr;</button>
+    <div style="overflow:hidden; padding:0 48px;">
+      <div class="carousel-track" data-carousel-track data-speed="0.55">
+        <div class="video-testi-card"><div class="video-testi-thumb"><img src="https://lp-info-02.vercel.app/depoimentos/testimonial-photo-1.jpg" alt="Depoimento em foto de aluno" loading="lazy"></div></div>
+        <div class="video-testi-card" data-video-testi><div class="video-testi-thumb video-testi-thumb--video"><video src="https://lp-info-02.vercel.app/depoimentos/02-depoimento-video.mp4" preload="metadata" playsinline loop></video><button class="play-btn" aria-label="Reproduzir depoimento"></button></div></div>
+        <div class="video-testi-card"><div class="video-testi-thumb"><img src="https://lp-info-02.vercel.app/depoimentos/testimonial-whatsapp-conversa.jpg" alt="Depoimento em conversa de WhatsApp" loading="lazy"></div></div>
+        <div class="video-testi-card" data-video-testi><div class="video-testi-thumb video-testi-thumb--video"><video src="https://lp-info-02.vercel.app/depoimentos/03-depoimento-video.mp4" preload="metadata" playsinline loop></video><button class="play-btn" aria-label="Reproduzir depoimento"></button></div></div>
+        <div class="video-testi-card"><div class="video-testi-thumb"><img src="https://lp-info-02.vercel.app/depoimentos/testimonial-story-luciana.jpg" alt="Depoimento em story da Luciana" loading="lazy"></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2335,8 +2413,9 @@ body.fase1-locked {
     if (unlocked) return;
     unlocked = true;
 
-    // Unlock scroll
+    // Unlock scroll with smooth behavior
     document.body.classList.remove('fase1-locked');
+    document.body.classList.add('scroll-unlocked');
 
     // Show phase 2
     var phase2 = document.getElementById('phase2');
@@ -2528,6 +2607,77 @@ body.fase1-locked {
       vid.addEventListener('click', toggle);
       vid.addEventListener('ended', function() { card.classList.remove('is-playing'); });
     })(mediaCards[i]);
+  }
+
+  // ── AUTO-SCROLL CAROUSELS ────────────────────────────────
+  function initCarousels() {
+    var wraps = document.querySelectorAll('.carousel-wrap');
+    wraps.forEach(function(wrap) {
+      var track = wrap.querySelector('[data-carousel-track]');
+      if (!track) return;
+
+      var speed = parseFloat(track.getAttribute('data-speed')) || 0.6;
+      var dir = -1;
+      var pos = 0;
+      var paused = false;
+      var raf;
+
+      // Duplicate items for infinite loop
+      var items = track.innerHTML;
+      track.innerHTML = items + items;
+
+      function animate() {
+        if (!paused) {
+          var halfWidth = track.scrollWidth / 2;
+          pos += dir * speed;
+          if (pos <= -halfWidth) pos += halfWidth;
+          if (pos >= 0) pos -= halfWidth;
+          track.style.transform = 'translateX(' + pos + 'px)';
+        }
+        raf = requestAnimationFrame(animate);
+      }
+      raf = requestAnimationFrame(animate);
+
+      // Pause on hover
+      track.addEventListener('mouseenter', function() { paused = true; });
+      track.addEventListener('mouseleave', function() { paused = false; });
+
+      // Arrow controls
+      var arrows = wrap.querySelectorAll('[data-carousel-dir]');
+      arrows.forEach(function(arrow) {
+        var arrowDir = parseInt(arrow.getAttribute('data-carousel-dir'));
+        arrow.addEventListener('click', function() {
+          if (dir === arrowDir) {
+            speed = Math.min(speed + 0.4, 3);
+          } else {
+            speed = parseFloat(track.getAttribute('data-speed')) || 0.6;
+            dir = arrowDir;
+          }
+        });
+        arrow.addEventListener('mouseenter', function() {
+          dir = arrowDir;
+          speed = 1.2;
+        });
+        arrow.addEventListener('mouseleave', function() {
+          speed = parseFloat(track.getAttribute('data-speed')) || 0.6;
+        });
+      });
+    });
+  }
+
+  // Init carousels when phase 2 unlocks
+  var p2 = document.getElementById('phase2');
+  var carouselMo = new MutationObserver(function() {
+    if (p2.classList.contains('is-unlocked')) {
+      setTimeout(initCarousels, 200);
+      carouselMo.disconnect();
+    }
+  });
+  carouselMo.observe(p2, { attributes: true, attributeFilter: ['class'] });
+
+  // Also init if preview mode
+  if (new URLSearchParams(window.location.search).get('preview') === 'true') {
+    setTimeout(initCarousels, 300);
   }
 
 })();
