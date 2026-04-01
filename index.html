@@ -1,0 +1,2611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquiteto de Ideias — Fale, Convença e Envolva | Diego Knebel</title>
+<meta name="description" content="Transforme o caos mental em clareza soberana. O método que transforma especialistas em comunicadores inesquecíveis. 16 aulas, 4 módulos, 1 engenharia verbal.">
+<meta property="og:title" content="Arquiteto de Ideias — Diego Knebel">
+<meta property="og:description" content="Falar bem não é um dom. É uma engenharia. Descubra o método que transforma especialistas em comunicadores inesquecíveis.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://lp-info-02.vercel.app/images/hero-principal.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#201747">
+<link rel="icon" type="image/png" href="https://lp-info-02.vercel.app/logos/logo-icone-terracota.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://lp-info-02.vercel.app">
+
+<style>
+/* ── CSS CUSTOM PROPERTIES ─────────────────────────────────── */
+:root {
+  --navy: #201747;
+  --navy-deep: #150f30;
+  --navy-mid: #2a1f5e;
+  --navy-surface: #1a1240;
+  --terracota: #D3451E;
+  --terracota-light: #e85f38;
+  --terracota-hover: #b83516;
+  --terracota-glow: rgba(211,69,30,0.25);
+  --creme: #F1DAB2;
+  --creme-light: #f8edd6;
+  --creme-dim: rgba(241,218,178,0.65);
+  --creme-subtle: rgba(241,218,178,0.15);
+  --creme-faint: rgba(241,218,178,0.08);
+  --white: #ffffff;
+  --ease-smooth: cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-bounce: cubic-bezier(0.34,1.56,0.64,1);
+  --ease-out-expo: cubic-bezier(0.19,1,0.22,1);
+  --ease-circ: cubic-bezier(0.075,0.82,0.165,1);
+  --dur-fast: 180ms;
+  --dur-base: 360ms;
+  --dur-slow: 600ms;
+  --dur-slower: 900ms;
+  --dur-reveal: 1100ms;
+  --section-py: clamp(60px, 8vw, 120px);
+  --container-max: 1100px;
+  --container-px: clamp(20px, 5vw, 48px);
+}
+
+/* ── RESET + BASE ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; }
+body {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--creme);
+  background: var(--navy);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(211,69,30,0.25); color: var(--creme); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul, ol { list-style: none; padding: 0; }
+
+/* ── TYPOGRAPHY ────────────────────────────────────────────── */
+h1, h2 { font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; color: var(--creme); line-height: 1.05; }
+h3 { font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--creme); }
+p { color: var(--creme-dim); }
+p strong { font-weight: 600; color: var(--creme); }
+
+/* ── CONTAINER ─────────────────────────────────────────────── */
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-px); }
+
+/* ── AMBIENT BACKGROUND ────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  top: -30vh; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(211,69,30,0.06) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── GRID OVERLAY ──────────────────────────────────────────── */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── SECTION LABELS ────────────────────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracota);
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 1px;
+  background: var(--terracota);
+  transition: width 0.7s var(--ease-out-expo);
+}
+.section-label.line-revealed::before { width: 28px; }
+
+/* ── GLASS CARD ────────────────────────────────────────────── */
+.glass-card {
+  backdrop-filter: blur(8px);
+  background: linear-gradient(130deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+}
+
+/* ── NAVBAR ─────────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 120;
+  padding: 12px 0;
+  background: linear-gradient(130deg, rgba(24,17,52,0.56), rgba(24,17,52,0.36) 52%, rgba(24,17,52,0.56));
+  border-bottom: 1px solid rgba(241,218,178,0.12);
+  backdrop-filter: blur(14px) saturate(165%);
+  -webkit-backdrop-filter: blur(14px) saturate(165%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: background 440ms var(--ease-smooth), border-color 440ms, backdrop-filter 440ms, box-shadow 440ms;
+}
+.navbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0));
+  opacity: 0.35;
+}
+.navbar.scrolled {
+  background: linear-gradient(130deg, rgba(20,14,46,0.88), rgba(20,14,46,0.74) 52%, rgba(20,14,46,0.88));
+  border-bottom-color: rgba(211,69,30,0.25);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: 0 16px 44px rgba(8,5,20,0.52), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: relative; z-index: 1; }
+.navbar-logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+.logo-navbar-img { height: 32px; width: auto; display: block; object-fit: contain; transition: height 300ms var(--ease-out-expo), opacity 200ms; }
+.scrolled .logo-navbar-img { height: 28px; }
+.navbar-logo:hover .logo-navbar-img { opacity: 0.85; }
+
+/* ── CTA BUTTON ────────────────────────────────────────────── */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+  background: var(--terracota);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  padding: 14px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  will-change: transform;
+  transition: background var(--dur-base) var(--ease-smooth), transform var(--dur-fast), box-shadow var(--dur-base), letter-spacing var(--dur-base);
+  box-shadow: 0 4px 20px var(--terracota-glow);
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.55s var(--ease-out-expo);
+}
+.cta-btn:hover::before { transform: translateX(100%); }
+.cta-btn:hover {
+  background: var(--terracota-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(211,69,30,0.45), 0 2px 8px rgba(0,0,0,0.3);
+  letter-spacing: 0.22em;
+}
+.cta-btn:active { transform: translateY(0) scale(0.98); box-shadow: 0 2px 10px var(--terracota-glow); transition-duration: var(--dur-fast); }
+.cta-btn.cta-primary { animation: ctaPulse 3s ease-in-out infinite; }
+.cta-btn.cta-primary:hover { animation: none; }
+.navbar-cta {
+  padding: 10px 14px;
+  min-height: 42px;
+  max-width: 158px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  white-space: normal;
+  flex-shrink: 0;
+}
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 9999px;
+  border: 1px solid rgba(241,218,178,0.25);
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(241,218,178,0.7);
+  transition: border-color 300ms, color 300ms;
+}
+.cta-secondary:hover { border-color: rgba(241,218,178,0.5); color: var(--creme); }
+
+/* ── HERO ──────────────────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding: calc(80px + var(--section-py)) 0 var(--section-py);
+  text-align: center;
+  background: var(--navy-deep);
+}
+.hero-section .grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  z-index: 0;
+}
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  border: 1px solid rgba(211,69,30,0.35);
+  padding: 8px 20px;
+  border-radius: 9999px;
+  margin-bottom: 28px;
+  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.1s both;
+}
+.hero-headline {
+  font-size: clamp(2.8rem, 10vw, 5.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--creme);
+  animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.25s both;
+}
+.hero-headline .text-terracota { color: var(--terracota); }
+.hero-sub {
+  margin-top: 16px;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(241,218,178,0.7);
+  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.4s both;
+}
+.hero-body {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--creme-dim);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.55s both;
+}
+
+/* ── VSL PLAYER ────────────────────────────────────────────── */
+.vsl-section {
+  padding: 0 0 var(--section-py);
+  background: var(--navy-deep);
+  position: relative;
+  z-index: 1;
+}
+.vsl-player {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16/9;
+  box-shadow: 0 28px 66px rgba(8,5,22,0.62), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.vsl-player video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vsl-big-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  z-index: 5;
+  cursor: pointer;
+  transition: opacity 300ms;
+}
+.vsl-big-play.hidden { opacity: 0; pointer-events: none; }
+.vsl-big-play-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(211,69,30,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  animation: playPulse 2.2s ease-in-out infinite;
+  transition: background 200ms, transform 200ms;
+}
+.vsl-big-play-btn:hover { background: var(--terracota); transform: scale(1.08); }
+.vsl-big-play-btn::after {
+  content: '';
+  width: 0; height: 0;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 22px solid #fff;
+  margin-left: 5px;
+}
+
+/* Controls bar */
+.vsl-controls {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.82));
+  padding: 24px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 300ms;
+  z-index: 10;
+}
+.vsl-player:hover .vsl-controls,
+.vsl-player.show-controls .vsl-controls { opacity: 1; }
+
+.vsl-ctrl-play {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.vsl-ctrl-play svg { width: 20px; height: 20px; }
+
+.vsl-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  flex-shrink: 0;
+  min-width: 40px;
+  font-variant-numeric: tabular-nums;
+}
+
+.vsl-progress-wrap {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+.vsl-progress-max {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: rgba(241,218,178,0.25);
+  border-radius: 3px;
+  width: 0%;
+  pointer-events: none;
+}
+.vsl-progress-played {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: var(--terracota);
+  border-radius: 3px;
+  width: 0%;
+  pointer-events: none;
+  z-index: 1;
+}
+.vsl-progress-input {
+  position: absolute;
+  inset: -6px 0;
+  width: 100%;
+  height: calc(100% + 12px);
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.vsl-ctrl-vol {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.vsl-ctrl-vol svg { width: 18px; height: 18px; }
+
+.vsl-vol-slider {
+  width: 60px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  outline: none;
+}
+.vsl-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* ── VSL HINT + COUNTDOWN ──────────────────────────────────── */
+.vsl-hint {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: rgba(241,218,178,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.vsl-hint-dot {
+  width: 8px; height: 8px;
+  background: var(--terracota);
+  border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.vsl-countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: var(--terracota);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── LIGHT PROOF ───────────────────────────────────────────── */
+.light-proof {
+  padding: 40px 0 0;
+  background: var(--navy-deep);
+}
+.proof-stats {
+  display: flex;
+  justify-content: center;
+  gap: clamp(24px, 5vw, 56px);
+  text-align: center;
+}
+.proof-stat__num {
+  display: block;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700;
+  color: var(--creme);
+  line-height: 1;
+}
+.proof-stat__label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(241,218,178,0.45);
+  margin-top: 6px;
+}
+
+/* ── PHASE 2 ───────────────────────────────────────────────── */
+.phase-2-content { display: none; }
+.phase-2-content.is-unlocked {
+  display: block;
+  animation: phase2Reveal 900ms var(--ease-out-expo) both;
+}
+
+/* ── SCROLL REVEAL ─────────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(2px);
+  transition: opacity var(--dur-slow) var(--ease-out-expo), transform var(--dur-slow) var(--ease-out-expo), filter var(--dur-slow) var(--ease-out-expo);
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translate(0) scale(1);
+  filter: blur(0);
+}
+
+/* ── SECTION BRIDGE ────────────────────────────────────────── */
+.bridge-section {
+  padding: var(--section-py) 0;
+  background: linear-gradient(180deg, var(--navy-deep), var(--navy));
+  text-align: center;
+}
+.bridge-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--terracota), transparent);
+  margin: 0 auto 32px;
+  border-radius: 2px;
+}
+
+/* ── DIAGNOSTICO ───────────────────────────────────────────── */
+.diagnostico-section {
+  padding: var(--section-py) 0;
+  background: var(--navy);
+}
+.diag-grid { display: grid; gap: 40px; align-items: start; }
+.diag-signal {
+  border-radius: 1.4rem;
+  border: 1px solid rgba(211,69,30,0.3);
+  background: var(--navy-surface);
+  padding: 32px;
+}
+
+/* ── PAIN LIST ─────────────────────────────────────────────── */
+.pain-list { margin: 36px 0 0; display: grid; gap: 14px; }
+.pain-list__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(241,218,178,0.12);
+  background: linear-gradient(130deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)), rgba(255,255,255,0.015);
+  transition: border-color 260ms;
+}
+.pain-list__item:hover { border-color: rgba(211,69,30,0.3); }
+.pain-list__icon {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: rgba(211,69,30,0.08);
+  flex-shrink: 0;
+}
+.pain-list__icon svg { width: 22px; height: 22px; stroke: var(--terracota); }
+.pain-list__text { font-size: 17px; color: rgba(241,218,178,0.80); font-weight: 400; line-height: 1.65; }
+
+/* ── SOLUTION ──────────────────────────────────────────────── */
+.solution-section {
+  padding: var(--section-py) 0;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+}
+.solution-grid { display: grid; gap: 48px; align-items: center; }
+.solution-photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: brightness(0.9) saturate(1.0) contrast(1.05);
+  border: 1px solid rgba(241,218,178,0.12);
+  border-radius: 1.25rem;
+  transition: filter 0.3s, transform 0.3s;
+}
+.solution-photo:hover { filter: brightness(1) saturate(1.1); transform: scale(1.01); }
+
+/* ── PILARES ───────────────────────────────────────────────── */
+.pilares-section {
+  padding: var(--section-py) 0;
+  background: var(--navy-deep);
+}
+.pilares-grid { display: grid; gap: 16px; margin-top: 48px; }
+.pilar-card {
+  border: 1px solid var(--creme-subtle);
+  border-radius: 1.25rem;
+  padding: 32px;
+  background: var(--navy-surface);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-base) var(--ease-out-expo), border-color var(--dur-base), box-shadow var(--dur-base);
+}
+.pilar-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--terracota), transparent);
+  border-radius: 0 2px 2px 0;
+}
+.pilar-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(211,69,30,0.45);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(211,69,30,0.2);
+}
+.pilar-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.pilar-card__id {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  background: rgba(211,69,30,0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(211,69,30,0.2);
+}
+.pilar-card__meta {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(241,218,178,0.4);
+}
+.pilar-card__title {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--creme);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.pilar-card__text {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--creme-dim);
+  line-height: 1.7;
+}
+
+/* ── MANIFESTO ─────────────────────────────────────────────── */
+.manifesto-section {
+  padding: var(--section-py) 0;
+  background: var(--navy);
+  text-align: center;
+}
+.manifesto-text {
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--creme);
+}
+.manifesto-accent { color: var(--terracota); }
+
+/* ── MODULES ───────────────────────────────────────────────── */
+.modules-section {
+  padding: var(--section-py) 0;
+  background: var(--navy);
+}
+.modules-header { margin-bottom: 56px; }
+.modules-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(241,218,178,0.12);
+}
+.modules-stat__num {
+  display: block;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--terracota);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.modules-stat__label {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(241,218,178,0.45);
+}
+.modules-layout { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.module-accordion-item {
+  border: 1px solid rgba(241,218,178,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.03);
+  transition: border-color 300ms;
+}
+.module-accordion-item:hover,
+.module-accordion-item.is-open { border-color: rgba(211,69,30,0.3); }
+.module-accordion-item.is-bonus { border-color: rgba(211,69,30,0.2); background: rgba(211,69,30,0.04); }
+.module-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 24px;
+  gap: 16px;
+  text-align: left;
+}
+.module-item__header { display: flex; align-items: center; gap: 16px; }
+.module-item__tag {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  background: rgba(211,69,30,0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(211,69,30,0.2);
+}
+.module-item__tag--bonus { background: rgba(211,69,30,0.15); border-color: rgba(211,69,30,0.35); }
+.module-item__title {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--creme);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.module-arrow {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  color: rgba(241,218,178,0.4);
+  transition: transform 300ms var(--ease-out-expo), color 300ms;
+}
+.module-arrow svg { width: 100%; height: 100%; }
+.module-arrow.is-open { transform: rotate(180deg); color: var(--terracota); }
+.module-accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 400ms var(--ease-out-expo);
+}
+.module-accordion-panel.is-open { max-height: 600px; }
+.module-item__aulas li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(241,218,178,0.05);
+  font-size: 14.5px;
+  color: rgba(241,218,178,0.68);
+  line-height: 1.55;
+  transition: color 200ms, background 200ms;
+}
+.module-item__aulas li:last-child { border-bottom: none; }
+.module-item__aulas li:hover { color: rgba(241,218,178,0.9); background: rgba(241,218,178,0.03); }
+.aula-num {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--terracota);
+  background: rgba(211,69,30,0.1);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-top: 1px;
+  letter-spacing: 0.05em;
+}
+.aula-num--bonus { background: rgba(211,69,30,0.15); font-size: 13px; padding: 2px 8px; }
+
+/* Extras sidebar */
+.extras-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(241,218,178,0.1);
+  border-radius: 12px;
+  padding: 28px 24px;
+  position: sticky;
+  top: 100px;
+}
+.extras-card__label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  margin-bottom: 20px;
+}
+.extras-list__item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(241,218,178,0.06);
+}
+.extras-list__item:last-child { border-bottom: none; }
+.extras-check {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  background: rgba(211,69,30,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  font-size: 11px;
+  color: var(--terracota);
+  font-weight: 700;
+  margin-top: 1px;
+}
+.extras-list__item strong { display: block; font-size: 14px; font-weight: 700; color: var(--creme); margin-bottom: 3px; }
+.extras-list__item span { font-size: 13px; color: rgba(241,218,178,0.5); line-height: 1.5; }
+
+/* ── VALUE STACK ───────────────────────────────────────────── */
+.value-stack-section {
+  padding: var(--section-py) 0;
+  background: var(--navy-deep);
+}
+.value-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(241,218,178,0.08);
+}
+.value-item__text { font-size: 16px; color: rgba(241,218,178,0.75); font-weight: 400; }
+.value-item__price { font-size: 14px; color: rgba(241,218,178,0.4); text-decoration: line-through; flex-shrink: 0; }
+.value-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-top: 8px;
+}
+.value-total__label { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--creme); }
+.value-total__price { font-size: 14px; color: rgba(241,218,178,0.4); text-decoration: line-through; }
+.value-real {
+  text-align: center;
+  margin-top: 32px;
+  padding: 24px;
+  border-radius: 1rem;
+  border: 1px solid rgba(211,69,30,0.3);
+  background: rgba(211,69,30,0.05);
+}
+.value-real__label { font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracota); }
+.value-real__price { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; color: var(--creme); margin-top: 8px; }
+
+/* ── TESTIMONIALS ──────────────────────────────────────────── */
+.testimonials-section {
+  padding: var(--section-py) 0;
+  background: var(--navy);
+  overflow: hidden;
+}
+.testi-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 24px 24px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.testi-scroll::-webkit-scrollbar { display: none; }
+.testi-card {
+  flex-shrink: 0;
+  width: 320px;
+  scroll-snap-align: start;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(241,218,178,0.1);
+  background: var(--navy-surface);
+  padding: 24px;
+  transition: transform var(--dur-base) var(--ease-out-expo), border-color var(--dur-base), box-shadow var(--dur-base);
+}
+.testi-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(211,69,30,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+.testi-card__quote { font-size: 16px; font-weight: 300; font-style: italic; line-height: 1.65; color: rgba(241,218,178,0.75); }
+.testi-card__name { margin-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracota); }
+.testi-card__role { font-size: 12px; color: rgba(241,218,178,0.4); margin-top: 2px; }
+
+/* ── MEDIA TESTIMONIALS ────────────────────────────────────── */
+.media-testi-section {
+  padding: var(--section-py) 0;
+  background: var(--creme);
+  overflow: hidden;
+}
+.media-testi-section .section-label { color: var(--terracota); }
+.media-testi-section h2 { color: var(--navy); }
+.media-testi-section p { color: rgba(32,23,71,0.65); }
+.media-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 24px 24px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.media-scroll::-webkit-scrollbar { display: none; }
+.media-card {
+  flex-shrink: 0;
+  width: clamp(200px, 22vw, 252px);
+  border: 1px solid rgba(32,23,71,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  transition: transform 360ms var(--ease-out-expo), border-color 360ms, box-shadow 360ms;
+}
+.media-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(211,69,30,0.45);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+}
+.media-card__inner {
+  width: 100%;
+  aspect-ratio: 9/16;
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-surface);
+}
+.media-card__inner img,
+.media-card__inner video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px; height: 56px;
+  background: rgba(211,69,30,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  z-index: 3;
+  transition: background 200ms, transform 200ms, opacity 200ms;
+}
+.media-play-btn::after {
+  content: '';
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 17px solid #fff;
+  margin-left: 4px;
+}
+.media-play-btn:hover { background: var(--terracota); transform: translate(-50%, -50%) scale(1.1); }
+.media-card.is-playing .media-play-btn { opacity: 0; pointer-events: none; }
+
+/* ── TECHNIQUE DEMO ────────────────────────────────────────── */
+.technique-section {
+  padding: var(--section-py) 0;
+  background: var(--navy);
+}
+.technique-grid { display: grid; gap: 20px; margin-top: 48px; }
+.technique-card {
+  border-radius: 1.4rem;
+  padding: 32px;
+  border: 1px solid rgba(241,218,178,0.08);
+}
+.technique-card--before { background: rgba(255,255,255,0.03); }
+.technique-card--after { background: rgba(211,69,30,0.06); border-color: rgba(211,69,30,0.25); }
+.technique-card__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.technique-card--before .technique-card__label { color: rgba(241,218,178,0.4); }
+.technique-card--after .technique-card__label { color: var(--terracota); }
+.technique-card__quote { margin-top: 16px; font-size: clamp(1.2rem, 2.5vw, 1.5rem); line-height: 1.5; font-style: italic; }
+.technique-card--before .technique-card__quote { font-weight: 300; color: rgba(241,218,178,0.42); }
+.technique-card--after .technique-card__quote { font-weight: 600; color: var(--creme); }
+
+/* ── PARA QUEM E ───────────────────────────────────────────── */
+.audience-section {
+  padding: var(--section-py) 0;
+  background: var(--creme);
+}
+.audience-section .section-label { color: var(--terracota); }
+.audience-section h2 { color: var(--navy); }
+.audience-section p { color: rgba(32,23,71,0.65); font-weight: 500; }
+.forwho-is { display: grid; gap: 2px; background: rgba(32,23,71,0.12); border: 1px solid rgba(32,23,71,0.12); margin-top: 48px; }
+.forwho-card {
+  background: #EDD5A3;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 300ms, transform 300ms var(--ease-out-expo);
+  border-left: 4px solid transparent;
+}
+.forwho-card:hover { background: #E8CC94; transform: translateY(-2px); border-left-color: var(--terracota); }
+.forwho-card__num {
+  position: absolute;
+  bottom: -12px; right: 16px;
+  font-weight: 900;
+  font-size: 96px;
+  line-height: 1;
+  color: rgba(32,23,71,0.06);
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+.forwho-card:hover .forwho-card__num { color: rgba(211,69,30,0.1); }
+.forwho-card__role {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.forwho-card__role::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 2px;
+  background: var(--terracota);
+  flex-shrink: 0;
+}
+.forwho-card__text { font-size: 15px; font-weight: 500; color: rgba(32,23,71,0.75); line-height: 1.7; position: relative; z-index: 1; }
+
+.forwho-divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 48px 0 32px;
+}
+.forwho-divider::before,
+.forwho-divider::after { content: ''; flex: 1; height: 1px; background: rgba(32,23,71,0.18); }
+.forwho-divider span {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(32,23,71,0.45);
+  white-space: nowrap;
+}
+.forwho-not { display: grid; gap: 2px; background: rgba(32,23,71,0.08); border: 1px solid rgba(32,23,71,0.08); opacity: 0.75; }
+.notfor-item {
+  background: rgba(241,218,178,0.4);
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.notfor-item__x {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  background: rgba(32,23,71,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(32,23,71,0.4);
+  margin-top: 1px;
+}
+.notfor-item__text { font-size: 14px; font-weight: 400; color: rgba(32,23,71,0.5); line-height: 1.6; font-style: italic; }
+
+/* ── PROOF BAND ────────────────────────────────────────────── */
+.proof-band {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+.proof-band-bg { position: absolute; inset: 0; z-index: 0; }
+.proof-band-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: brightness(0.65) saturate(1.1) contrast(1.05); }
+.proof-band-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(32,23,71,0.96) 0%, rgba(32,23,71,0.82) 45%, rgba(32,23,71,0.42) 75%, transparent 100%);
+  z-index: 1;
+}
+
+/* ── ABOUT DIEGO ───────────────────────────────────────────── */
+.about-section {
+  padding: var(--section-py) 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-deep);
+}
+.sobre-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.38) saturate(0.6) hue-rotate(10deg);
+}
+.about-overlay { position: absolute; inset: 0; background: rgba(21,15,48,0.72); }
+.about-grid { display: grid; gap: 40px; align-items: start; position: relative; z-index: 1; }
+.about-photo {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  object-position: center top;
+  border-left: 3px solid var(--terracota);
+  filter: brightness(0.88) saturate(1.05);
+  border-radius: 8px;
+}
+.about-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid var(--terracota);
+  flex-shrink: 0;
+}
+.about-stats { display: grid; gap: 16px; margin-top: 32px; }
+.about-stat-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(241,218,178,0.1);
+  background: var(--navy-surface);
+  padding: 16px;
+}
+.about-stat-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terracota);
+}
+.about-stat-card__value { font-size: 24px; font-weight: 700; color: var(--creme); margin-top: 4px; }
+
+/* ── OBJECTION BLOCKS ──────────────────────────────────────── */
+.objections-section {
+  padding: var(--section-py) 0;
+  background: var(--navy);
+}
+.objection-block {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(241,218,178,0.08);
+}
+.objection-block:last-child { border-bottom: none; }
+.objection-block__q {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--creme);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.objection-block__q::before {
+  content: '"';
+  font-size: 32px;
+  color: var(--terracota);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.objection-block__a { margin-top: 12px; font-size: 16px; color: var(--creme-dim); line-height: 1.75; padding-left: 44px; }
+
+/* ── PRICE / OFFER ─────────────────────────────────────────── */
+.offer-section {
+  padding: var(--section-py) 0;
+  background: var(--navy-deep);
+}
+.offer-grid { display: grid; gap: 40px; }
+.price-card {
+  border-radius: 1.4rem;
+  background: var(--navy-surface);
+  padding: 32px;
+  border: 1px solid rgba(211,69,30,0.3);
+  animation: priceGlow 4s ease-in-out infinite;
+}
+.price-from {
+  font-size: 16px;
+  color: rgba(241,218,178,0.4);
+  text-decoration: line-through;
+  margin-bottom: 8px;
+}
+.price-installment { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; line-height: 1; }
+.price-installment__times { font-weight: 300; font-size: clamp(22px, 4vw, 30px); color: var(--creme); letter-spacing: 0.02em; }
+.price-installment__value { font-weight: 700; font-size: clamp(52px, 9vw, 80px); color: var(--creme); letter-spacing: -0.02em; line-height: 1; }
+.price-lump { font-weight: 300; font-size: 15px; color: rgba(241,218,178,0.5); letter-spacing: 0.04em; margin-top: 4px; margin-bottom: 32px; }
+.offer-buttons { display: grid; gap: 12px; margin-top: 28px; }
+.offer-micro { margin-top: 20px; text-align: center; font-size: 12px; color: rgba(241,218,178,0.4); line-height: 1.5; }
+
+/* ── GUARANTEE ─────────────────────────────────────────────── */
+.guarantee-section {
+  padding: var(--section-py) 0;
+  background: var(--navy);
+}
+.guarantee-card {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 1.4rem;
+  border: 1px solid rgba(211,69,30,0.25);
+  background: var(--navy-surface);
+  padding: 48px;
+  text-align: center;
+}
+
+/* ── FAQ ───────────────────────────────────────────────────── */
+.faq-section {
+  padding: var(--section-py) 0;
+  background: var(--navy-deep);
+}
+.faq-list { max-width: 800px; margin: 48px auto 0; }
+.faq-item {
+  border: 1px solid var(--creme-subtle);
+  background: var(--creme-faint);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 24px;
+  text-align: left;
+}
+.faq-trigger__text {
+  font-size: 17px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--creme);
+  line-height: 1.3;
+}
+.faq-toggle {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(241,218,178,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 300ms, color 300ms;
+}
+.faq-toggle-line {
+  position: absolute;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform 300ms var(--ease-out-expo);
+}
+.faq-toggle-line--h { width: 12px; height: 2px; }
+.faq-toggle-line--v { width: 2px; height: 12px; }
+.faq-item.is-open .faq-toggle { border-color: var(--terracota); color: var(--terracota); }
+.faq-item.is-open .faq-toggle-line--v { transform: rotate(90deg); }
+.faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 400ms var(--ease-out-expo);
+}
+.faq-panel.is-open { max-height: 400px; }
+.faq-panel__inner { padding: 0 24px 24px; }
+.faq-panel__text { font-size: 16px; font-weight: 300; line-height: 1.7; color: var(--creme-dim); }
+
+/* ── CTA SECTIONS ──────────────────────────────────────────── */
+.cta-section {
+  padding: var(--section-py) 0;
+  text-align: center;
+}
+.cta-section--dark { background: var(--navy); }
+.cta-section--deep { background: var(--navy-deep); }
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+.footer {
+  background: var(--navy-deep);
+  padding: 56px 0;
+  text-align: center;
+  border-top: 1px solid rgba(241,218,178,0.06);
+}
+.logo-footer-img { height: 72px; width: auto; display: block; margin: 0 auto; opacity: 0.55; transition: opacity 250ms; }
+.logo-footer-img:hover { opacity: 0.8; }
+.footer-links { margin-top: 20px; font-size: 13px; color: rgba(241,218,178,0.3); }
+.footer-links a { transition: color 200ms; }
+.footer-links a:hover { color: rgba(241,218,178,0.6); }
+.footer-copy { margin-top: 16px; font-size: 13px; color: rgba(241,218,178,0.3); }
+
+/* ── KEYFRAMES ─────────────────────────────────────────────── */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes playPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(211,69,30,0.4); }
+  50%      { box-shadow: 0 0 0 20px rgba(211,69,30,0); }
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(211,69,30,0.25); }
+  50%      { box-shadow: 0 4px 36px rgba(211,69,30,0.55), 0 0 0 6px rgba(211,69,30,0.08); }
+}
+@keyframes priceGlow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(211,69,30,0.2), 0 24px 64px rgba(0,0,0,0.5); }
+  50%      { box-shadow: 0 0 0 1px rgba(211,69,30,0.5), 0 24px 64px rgba(0,0,0,0.5), 0 0 80px rgba(211,69,30,0.12); }
+}
+@keyframes phase2Reveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────── */
+@media (min-width: 640px) {
+  .forwho-is { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 768px) {
+  .navbar-cta { padding: 14px 28px; max-width: none; font-size: 13px; letter-spacing: 0.18em; white-space: nowrap; }
+  .logo-navbar-img { height: 32px; }
+  .diag-grid { grid-template-columns: 1.1fr 0.9fr; }
+  .solution-grid { grid-template-columns: 1.03fr 0.97fr; }
+  .pilares-grid { grid-template-columns: repeat(2, 1fr); }
+  .technique-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 0.9fr 1.1fr; }
+  .about-stats { grid-template-columns: repeat(3, 1fr); }
+  .offer-grid { grid-template-columns: 1.05fr 0.95fr; }
+  .forwho-not { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .modules-layout { grid-template-columns: 1fr 320px; }
+}
+@media (max-width: 1023px) {
+  .modules-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .logo-navbar-img { height: 26px; }
+  .logo-footer-img { height: 56px; }
+  .diag-grid, .solution-grid, .about-grid, .offer-grid { grid-template-columns: 1fr; }
+  .pilares-grid, .technique-grid { grid-template-columns: 1fr; }
+  .forwho-is, .forwho-not { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr; }
+  .proof-band { min-height: 320px; }
+  .proof-band-overlay { background: linear-gradient(to bottom, rgba(32,23,71,0.96), rgba(32,23,71,0.7)); }
+  .media-card { width: clamp(190px, 55vw, 236px); }
+}
+@media (max-width: 480px) {
+  .logo-navbar-img { height: 22px; }
+  .hero-headline { font-size: clamp(2.2rem, 12vw, 3.5rem); }
+  .vsl-big-play-btn { width: 64px; height: 64px; }
+  .vsl-vol-slider { display: none; }
+}
+
+/* ── REDUCED MOTION ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FASE 1 — PRE-DESBLOQUEIO
+     ══════════════════════════════════════════════════════════════ -->
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-logo">
+        <img src="https://lp-info-02.vercel.app/logos/logo-navbar.png" alt="Diego Knebel" class="logo-navbar-img" width="208" height="32" loading="eager">
+      </a>
+      <a href="#comprar" class="cta-btn navbar-cta phase-2-element" style="display:none;">
+        Quero garantir minha vaga
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section" id="hero">
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-badge">Para quem já venceu o medo, mas ainda luta contra a própria confusão</span>
+      <h1 class="hero-headline">
+        Arquiteto<br><span class="text-terracota">de Ideias</span>
+      </h1>
+      <p class="hero-sub">Fale, Convença e Envolva</p>
+      <p class="hero-body">
+        Você já sentiu que o seu conhecimento é um oceano, mas na hora de falar, você só consegue entregar gotas? Assista ao vídeo abaixo com atenção.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VSL PLAYER -->
+<section class="vsl-section" id="vsl-section">
+  <div class="container">
+    <div class="vsl-player" id="vslPlayer">
+      <video id="vslVideo" preload="metadata" playsinline>
+        <source src="/video/vsl-arquiteto.mp4" type="video/mp4">
+      </video>
+
+      <!-- Big play overlay -->
+      <div class="vsl-big-play" id="vslBigPlay">
+        <button class="vsl-big-play-btn" aria-label="Reproduzir vídeo">
+        </button>
+      </div>
+
+      <!-- Custom controls -->
+      <div class="vsl-controls" id="vslControls">
+        <button class="vsl-ctrl-play" id="vslCtrlPlay" aria-label="Play/Pause">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" id="playIcon"/></svg>
+        </button>
+        <span class="vsl-time" id="vslTimeCurrent">0:00</span>
+        <div class="vsl-progress-wrap" id="vslProgressWrap">
+          <div class="vsl-progress-max" id="vslProgressMax"></div>
+          <div class="vsl-progress-played" id="vslProgressPlayed"></div>
+          <input type="range" class="vsl-progress-input" id="vslProgressSeek" min="0" max="100" step="0.1" value="0" aria-label="Progresso do vídeo">
+        </div>
+        <span class="vsl-time" id="vslTimeDuration">0:00</span>
+        <button class="vsl-ctrl-vol" id="vslCtrlVol" aria-label="Volume">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/></svg>
+        </button>
+        <input type="range" class="vsl-vol-slider" id="vslVolSlider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+      </div>
+    </div>
+
+    <!-- Hint + countdown -->
+    <p class="vsl-hint" id="vslHint">
+      <span class="vsl-hint-dot"></span>
+      <span>Assista até o momento especial em</span>
+      <span class="vsl-countdown" id="vslCountdown">2:35</span>
+      <span>— a parte mais importante começa ali</span>
+    </p>
+  </div>
+</section>
+
+<!-- LIGHT SOCIAL PROOF -->
+<section class="light-proof" id="lightProof">
+  <div class="container">
+    <div class="proof-stats">
+      <div>
+        <span class="proof-stat__num" data-counter="500">0</span><span class="proof-stat__num" style="font-weight:300;">+</span>
+        <span class="proof-stat__label">Alunos impactados</span>
+      </div>
+      <div>
+        <span class="proof-stat__num" data-counter="16">0</span>
+        <span class="proof-stat__label">Aulas estruturadas</span>
+      </div>
+      <div>
+        <span class="proof-stat__num" data-counter="7">0</span>
+        <span class="proof-stat__label">Dias de garantia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     FASE 2 — POS-DESBLOQUEIO
+     ══════════════════════════════════════════════════════════════ -->
+<div id="phase2" class="phase-2-content">
+
+<!-- BRIDGE -->
+<section class="bridge-section" id="bridge">
+  <div class="container" data-reveal>
+    <div class="bridge-divider"></div>
+    <p class="section-label" style="justify-content:center;">Agora você entende o caminho</p>
+    <h2 style="font-size:clamp(1.8rem,5vw,3.2rem); max-width:700px; margin:16px auto 0; text-align:center;">
+      Falar bem não é um dom.<br><span style="color:var(--terracota)">É uma engenharia.</span>
+    </h2>
+    <p style="max-width:600px; margin:20px auto 0; text-align:center; font-size:1.1rem; line-height:1.75;">
+      O medo já não te cala mais. Mas agora você enfrenta um inimigo mais silencioso: o ruído. Aqui está o método que resolve.
+    </p>
+  </div>
+</section>
+
+<!-- DIAGNOSTICO — Pain Signals -->
+<section class="diagnostico-section" id="diagnostico">
+  <div class="container">
+    <div data-reveal>
+      <h2 style="max-width:700px; font-size:clamp(1.6rem,4vw,2.8rem); line-height:1.1;">
+        Quando a comunicação está confusa, o valor do seu repertório fica <span style="color:var(--terracota)">invisível.</span>
+      </h2>
+    </div>
+
+    <ul class="pain-list" data-reveal>
+      <li class="pain-list__item">
+        <span class="pain-list__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6m-3 0v3m-6 7a6 6 0 1 1 12 0v2a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="pain-list__text">Você sabe muito, mas trava ao organizar ideias em uma mensagem forte.</span>
+      </li>
+      <li class="pain-list__item">
+        <span class="pain-list__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h5l3 3 4-6 2 3h4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="pain-list__text">Você fala bastante, porém sente que não fica memorável.</span>
+      </li>
+      <li class="pain-list__item">
+        <span class="pain-list__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12c2.5-3.5 5.2-5.3 8-5.3s5.5 1.8 8 5.3c-2.5 3.5-5.2 5.3-8 5.3S6.5 15.5 4 12z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.8"/></svg>
+        </span>
+        <span class="pain-list__text">Seu conteúdo é bom, mas ainda não influencia como deveria.</span>
+      </li>
+      <li class="pain-list__item">
+        <span class="pain-list__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18h16M6 14l2-8h8l2 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="pain-list__text">Falta estrutura para transformar repertório em autoridade clara.</span>
+      </li>
+    </ul>
+
+    <!-- Maldição do Conhecimento -->
+    <div class="diag-grid" style="margin-top:56px;">
+      <div data-reveal>
+        <p class="section-label">O diagnóstico</p>
+        <h2 style="margin-top:16px; font-size:clamp(1.6rem,4vw,2.8rem); line-height:1.1;">
+          Você não é confuso<br>por saber pouco.
+        </h2>
+        <p style="margin-top:24px; font-size:1.1rem; line-height:1.75;">
+          É o oposto. Você é confuso porque sabe <strong>demais,</strong> e o seu cérebro esqueceu como era não saber.
+          A ciência chama isso de <strong>Maldição do Conhecimento.</strong> Você pulou etapas, usou termos que só você entende, e pressupôs que o óbvio para você é óbvio para o outro. Não é.
+        </p>
+        <p style="margin-top:16px; font-size:1.1rem; line-height:1.75;">
+          Enquanto isso, pessoas com metade do seu preparo ocupam lugares que deveriam ser seus, simplesmente porque elas conseguem se fazer entender. Isso dói. E é evitável.
+        </p>
+      </div>
+      <div data-reveal>
+        <div class="diag-signal">
+          <p class="section-label">Sinal crítico</p>
+          <p style="margin-top:16px; font-size:1.4rem; font-weight:700; text-transform:uppercase; line-height:1.2; color:var(--creme);">
+            Quanto mais conhecimento sem estrutura, maior o risco de ser mal interpretado.
+          </p>
+          <p style="margin-top:20px; font-size:1rem; color:rgba(241,218,178,0.6); line-height:1.7;">
+            Anote: Clareza não é sobre o quanto eu sei, é sobre o quanto o outro entende.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCAO -->
+<section class="solution-section" id="solucao">
+  <div class="container">
+    <div class="solution-grid">
+      <div data-reveal>
+        <p class="section-label">A solução</p>
+        <h2 style="margin-top:16px; font-size:clamp(1.6rem,4vw,2.8rem); line-height:1.1;">
+          Falar bem não é um dom.<br><em style="font-style:normal; color:var(--terracota);">É uma engenharia.</em>
+        </h2>
+        <div style="margin-top:32px; max-width:600px;">
+          <p style="font-size:1.1rem; line-height:1.75; margin-bottom:16px;">
+            Catedrais não ficam de pé por séculos porque alguém foi criativo.
+            Elas ficam porque alguém calculou as vigas antes de pintar os vitrais.
+            A sua comunicação funciona igual.
+          </p>
+          <p style="font-size:1.1rem; line-height:1.75; margin-bottom:16px;">
+            O Arquiteto de Ideias é o treinamento que constrói a estrutura invisível
+            por trás de cada fala — de um Reels de 60 segundos a uma masterclass de
+            2 horas — para que você nunca mais se perca no meio do caminho.
+          </p>
+          <p style="font-size:1.1rem; line-height:1.75;">
+            Não é sobre falar difícil. Não é sobre ser performático.
+            <strong>É sobre ser inesquecível.</strong>
+          </p>
+        </div>
+      </div>
+      <div data-reveal>
+        <img
+          src="https://lp-info-02.vercel.app/images/diego-engenharia.jpg"
+          alt="Diego Knebel em retrato editorial premium"
+          class="solution-photo"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 PILARES -->
+<section class="pilares-section" id="pilares">
+  <div class="container">
+    <div style="max-width:700px; margin:0 auto; text-align:center;" data-reveal>
+      <p class="section-label" style="justify-content:center;">O método central</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+        Uma arquitetura de comunicação que sustenta performance de alto nível.
+      </h2>
+      <p style="margin-top:20px; font-size:1.05rem; line-height:1.75;">
+        Clareza, estrutura, retórica e domínio situacional em um sistema único.
+      </p>
+    </div>
+    <div class="pilares-grid">
+      <article class="pilar-card" data-reveal>
+        <div class="pilar-card__top">
+          <span class="pilar-card__id">Pilar 01</span>
+          <span class="pilar-card__meta">G · Gancho</span>
+        </div>
+        <h3 class="pilar-card__title">Clareza Absoluta</h3>
+        <p class="pilar-card__text">Os primeiros 7 segundos decidem se você será ouvido ou ignorado. Aprenda a sequestrar a atenção antes de qualquer argumento.</p>
+      </article>
+      <article class="pilar-card" data-reveal>
+        <div class="pilar-card__top">
+          <span class="pilar-card__id">Pilar 02</span>
+          <span class="pilar-card__meta">P · Problema</span>
+        </div>
+        <h3 class="pilar-card__title">Esqueleto da Mensagem</h3>
+        <p class="pilar-card__text">Mergulhe na ferida do seu público antes de oferecer o remédio. Quem nomeia a dor, conquista a autoridade de falar da cura.</p>
+      </article>
+      <article class="pilar-card" data-reveal>
+        <div class="pilar-card__top">
+          <span class="pilar-card__id">Pilar 03</span>
+          <span class="pilar-card__meta">S · Solução</span>
+        </div>
+        <h3 class="pilar-card__title">Caixa de Ferramentas da Retórica</h3>
+        <p class="pilar-card__text">Entregue um único insight com força total. Analogias, silêncio e perguntas que abrem o subconsciente — sem ruído, sem exagero.</p>
+      </article>
+      <article class="pilar-card" data-reveal>
+        <div class="pilar-card__top">
+          <span class="pilar-card__id">Pilar 04</span>
+          <span class="pilar-card__meta">C · Chamada</span>
+        </div>
+        <h3 class="pilar-card__title">Domínio do Imprevisto</h3>
+        <p class="pilar-card__text">Toda comunicação soberana exige um movimento. Você aprende a conduzir qualquer audiência — ao vivo, no digital, sob pressão — até a ação.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto-section">
+  <div class="container" data-reveal>
+    <p class="manifesto-text">
+      Não é sobre parecer inteligente.<br>
+      É sobre ser <span class="manifesto-accent">impossível de ignorar.</span>
+    </p>
+    <p style="max-width:700px; margin:32px auto 0; font-size:1.15rem; line-height:1.75; text-align:center;">
+      Quando sua mensagem combina profundidade e clareza, sua presença deixa de competir por atenção e passa a <strong>comandar atenção.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- MODULOS -->
+<section class="modules-section" id="modulos">
+  <div class="container">
+    <div class="modules-header" data-reveal>
+      <p class="section-label">O que você vai aprender</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.6rem,4vw,2.8rem); line-height:1.1;">
+        16 aulas. 4 módulos.<br><em style="font-style:normal; color:var(--terracota);">Uma construção completa.</em>
+      </h2>
+      <div class="modules-stats">
+        <div>
+          <span class="modules-stat__num" data-counter="16">0</span>
+          <span class="modules-stat__label">Aulas</span>
+        </div>
+        <div>
+          <span class="modules-stat__num" data-counter="4">0</span>
+          <span class="modules-stat__label">Módulos</span>
+        </div>
+        <div>
+          <span class="modules-stat__num" data-counter="1">0</span>
+          <span class="modules-stat__label">Bônus exclusivo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modules-layout">
+      <!-- Accordion -->
+      <div class="modules-list" id="modulesAccordion">
+
+        <article class="module-accordion-item is-open">
+          <button type="button" class="module-accordion-trigger" aria-expanded="true">
+            <div class="module-item__header">
+              <span class="module-item__tag">Módulo 1</span>
+              <h3 class="module-item__title">O Fim da Encheção de Linguiça</h3>
+            </div>
+            <span class="module-arrow is-open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="module-accordion-panel is-open">
+            <ul class="module-item__aulas">
+              <li><span class="aula-num">01</span>A Maldição do Conhecimento: por que o seu saber te sabota</li>
+              <li><span class="aula-num">02</span>Mapa Mental vs. Mapa Verbal: pensar é uma teia, falar é uma linha</li>
+              <li><span class="aula-num">03</span>O Objetivo Único: o tiro de sniper que não deixa ninguém para trás</li>
+              <li><span class="aula-num">04</span>Como falar a língua de quem está te ouvindo</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="module-accordion-item">
+          <button type="button" class="module-accordion-trigger" aria-expanded="false">
+            <div class="module-item__header">
+              <span class="module-item__tag">Módulo 2</span>
+              <h3 class="module-item__title">O Esqueleto da Mensagem</h3>
+            </div>
+            <span class="module-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="module-accordion-panel">
+            <ul class="module-item__aulas">
+              <li><span class="aula-num">05</span>O método GPS-C: a viga que sustenta qualquer fala</li>
+              <li><span class="aula-num">06</span>Storytelling em 3 minutos: os 4 atos que abrem o coração</li>
+              <li><span class="aula-num">07</span>Roteiros para vídeos curtos: Reels e TikTok com profundidade real</li>
+              <li><span class="aula-num">08</span>Roteiros para aulas longas: sem perder o ritmo em 90 minutos</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="module-accordion-item">
+          <button type="button" class="module-accordion-trigger" aria-expanded="false">
+            <div class="module-item__header">
+              <span class="module-item__tag">Módulo 3</span>
+              <h3 class="module-item__title">A Caixa de Ferramentas da Retórica</h3>
+            </div>
+            <span class="module-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="module-accordion-panel">
+            <ul class="module-item__aulas">
+              <li><span class="aula-num">09</span>Gatilhos de atenção: como sequestrar a mente em 7 segundos</li>
+              <li><span class="aula-num">10</span>Analogias e metáforas: o Cavalo de Troia do conhecimento</li>
+              <li><span class="aula-num">11</span>O poder do silêncio: a moldura que dá peso às suas palavras</li>
+              <li><span class="aula-num">12</span>A arte de fazer perguntas: transformar monólogo em movimento</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="module-accordion-item">
+          <button type="button" class="module-accordion-trigger" aria-expanded="false">
+            <div class="module-item__header">
+              <span class="module-item__tag">Módulo 4</span>
+              <h3 class="module-item__title">O Domínio do Imprevisto</h3>
+            </div>
+            <span class="module-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="module-accordion-panel">
+            <ul class="module-item__aulas">
+              <li><span class="aula-num">13</span>Improviso estruturado: as peças de LEGO que nunca falham</li>
+              <li><span class="aula-num">14</span>Ler a sala: detectar tédio e mudar a rota em pleno voo</li>
+              <li><span class="aula-num">15</span>Perguntas difíceis: o Aikidô verbal que transforma ataque em autoridade</li>
+              <li><span class="aula-num">16</span>Da técnica à influência: quando a estrutura vira instinto</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="module-accordion-item is-bonus">
+          <button type="button" class="module-accordion-trigger" aria-expanded="false">
+            <div class="module-item__header">
+              <span class="module-item__tag module-item__tag--bonus">+ Aula Bônus</span>
+              <h3 class="module-item__title">O Trono Vazio</h3>
+            </div>
+            <span class="module-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="module-accordion-panel">
+            <ul class="module-item__aulas">
+              <li><span class="aula-num aula-num--bonus">&#10022;</span>O que separa o Arquiteto do Líder de Comando</li>
+              <li><span class="aula-num aula-num--bonus">&#10022;</span>A Semiótica do Poder: como sua imagem comunica antes da sua voz</li>
+              <li><span class="aula-num aula-num--bonus">&#10022;</span>O convite para o próximo nível</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- Extras sidebar -->
+      <div data-reveal>
+        <div class="extras-card">
+          <span class="extras-card__label">Bônus e ativos inclusos</span>
+          <ul>
+            <li class="extras-list__item">
+              <span class="extras-check" aria-hidden="true">&#10003;</span>
+              <div><strong>Biblioteca de exemplos comentados</strong><span>Analogias e ganchos reais para cada situação.</span></div>
+            </li>
+            <li class="extras-list__item">
+              <span class="extras-check" aria-hidden="true">&#10003;</span>
+              <div><strong>Plano de treino semanal guiado</strong><span>Incluído no treinamento premium.</span></div>
+            </li>
+            <li class="extras-list__item">
+              <span class="extras-check" aria-hidden="true">&#10003;</span>
+              <div><strong>Acesso à área de membros</strong><span>Navegação por módulo com interface intuitiva.</span></div>
+            </li>
+            <li class="extras-list__item">
+              <span class="extras-check" aria-hidden="true">&#10003;</span>
+              <div><strong>Suporte</strong><span>Incluído no treinamento premium.</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE STACK -->
+<section class="value-stack-section" id="value-stack">
+  <div class="container" style="max-width:700px;">
+    <div style="text-align:center;" data-reveal>
+      <p class="section-label" style="justify-content:center;">O que está incluído</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+        Tudo que você precisa para dominar a engenharia verbal.
+      </h2>
+    </div>
+    <div style="margin-top:48px;" data-reveal>
+      <div class="value-item"><span class="value-item__text">16 aulas + 1 aula bônus em vídeo</span><span class="value-item__price">R$ 197</span></div>
+      <div class="value-item"><span class="value-item__text">4 módulos completos com exercícios práticos</span><span class="value-item__price">R$ 97</span></div>
+      <div class="value-item"><span class="value-item__text">Método GPS-C: improviso estruturado</span><span class="value-item__price">R$ 47</span></div>
+      <div class="value-item"><span class="value-item__text">Biblioteca de exemplos comentados</span><span class="value-item__price">R$ 27</span></div>
+      <div class="value-item"><span class="value-item__text">Plano de treino semanal guiado</span><span class="value-item__price">R$ 19</span></div>
+      <div class="value-item"><span class="value-item__text">Acesso vitalício + atualizações futuras</span><span class="value-item__price">R$ 10</span></div>
+      <div class="value-total">
+        <span class="value-total__label">Total do valor</span>
+        <span class="value-total__price">R$ 397</span>
+      </div>
+      <div class="value-real">
+        <p class="value-real__label">Você paga apenas</p>
+        <p class="value-real__price">R$ 147</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS TEXTO -->
+<section class="testimonials-section" id="depoimentos">
+  <div class="container">
+    <div style="max-width:700px; margin:0 auto; text-align:center;" data-reveal>
+      <p class="section-label" style="justify-content:center;">O que estão dizendo</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+        Quem construiu. Quem transformou.
+      </h2>
+    </div>
+  </div>
+  <div class="testi-scroll" style="margin-top:40px;">
+    <article class="testi-card">
+      <p class="testi-card__quote">&ldquo;Fiz o curso com o Diego e poucos dias depois fiz uma live para os colaboradores da minha empresa e foi uma experiência incrível. Coloquei em prática todas as dicas, me senti segura em todos os momentos. Entendi que sou capaz.&rdquo;</p>
+      <p class="testi-card__name">Lívia Soares</p>
+      <p class="testi-card__role">Aluna</p>
+    </article>
+    <article class="testi-card">
+      <p class="testi-card__quote">&ldquo;Antes do curso a minha cabeça era muito focada em incertezas e indecisões a respeito da minha capacidade. Após o curso, me tornei mais objetiva e confiante e minha autoestima está mais elevada. Meu conselho é pra que todos façam porque vale muito a pena!&rdquo;</p>
+      <p class="testi-card__name">Karol Lopes</p>
+      <p class="testi-card__role">Aluna</p>
+    </article>
+    <article class="testi-card">
+      <p class="testi-card__quote">&ldquo;Fiz um curso de oratória com o Diego com o objetivo principal de ser mais objetiva e focada em minha comunicação. E o Diego conseguiu isso de forma incrível!&rdquo;</p>
+      <p class="testi-card__name">Ana Paula Ribeiro</p>
+      <p class="testi-card__role">Aluna</p>
+    </article>
+    <article class="testi-card">
+      <p class="testi-card__quote">&ldquo;Acabei de participar de um curso de Oratória com o Diego e é transformador. Você vai aprender a desbloquear sua comunicação e Diego consegue fazer isso com perfeição. Aplausos de pé pra você!&rdquo;</p>
+      <p class="testi-card__name">Adriana Fragoso</p>
+      <p class="testi-card__role">Aluna</p>
+    </article>
+    <article class="testi-card">
+      <p class="testi-card__quote">&ldquo;Gravei meu primeiro story sendo desafiada no curso do Diego Knebel. Aproveito para indicar o trabalho dele porque quem me conhece sabe que, pra eu ter cumprido este desafio, ele é realmente muito bom!&rdquo;</p>
+      <p class="testi-card__name">Raquel Hoffmann</p>
+      <p class="testi-card__role">Aluna</p>
+    </article>
+    <article class="testi-card">
+      <p class="testi-card__quote">&ldquo;Eu tinha muita dificuldade em falar. Não sabia ser objetiva e passar o que havia dentro de mim. Aprendi a controlar as emoções e a respiração para poder filtrar o que vou falar. Gratidão ao profissional que o Diego é!&rdquo;</p>
+      <p class="testi-card__name">Silvana Freitas</p>
+      <p class="testi-card__role">Aluna</p>
+    </article>
+    <article class="testi-card">
+      <p class="testi-card__quote">&ldquo;Diego é maravilhoso! Não apenas entrega o produto mas ele mesmo se entrega. Parabéns! Você é maravilhoso!&rdquo;</p>
+      <p class="testi-card__name">Claudia Ross</p>
+      <p class="testi-card__role">Aluna</p>
+    </article>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS MIDIA -->
+<section class="media-testi-section" id="depoimentos-midia">
+  <div class="container">
+    <div style="max-width:700px; margin:0 auto; text-align:center;" data-reveal>
+      <p class="section-label" style="justify-content:center;">Depoimentos em vídeos e fotos</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+        Veja quem já saiu do caos para a clareza.
+      </h2>
+    </div>
+  </div>
+  <div class="media-scroll" style="margin-top:40px;">
+    <div class="media-card">
+      <div class="media-card__inner">
+        <img src="https://lp-info-02.vercel.app/depoimentos/testimonial-photo-1.jpg" alt="Depoimento em foto de aluno" loading="lazy">
+      </div>
+    </div>
+    <div class="media-card" data-video-testi>
+      <div class="media-card__inner">
+        <video src="https://lp-info-02.vercel.app/depoimentos/02-depoimento-video.mp4" preload="metadata" playsinline loop></video>
+        <button class="media-play-btn" aria-label="Reproduzir depoimento"></button>
+      </div>
+    </div>
+    <div class="media-card">
+      <div class="media-card__inner">
+        <img src="https://lp-info-02.vercel.app/depoimentos/testimonial-whatsapp-conversa.jpg" alt="Depoimento em conversa de WhatsApp" loading="lazy">
+      </div>
+    </div>
+    <div class="media-card" data-video-testi>
+      <div class="media-card__inner">
+        <video src="https://lp-info-02.vercel.app/depoimentos/03-depoimento-video.mp4" preload="metadata" playsinline loop></video>
+        <button class="media-play-btn" aria-label="Reproduzir depoimento"></button>
+      </div>
+    </div>
+    <div class="media-card">
+      <div class="media-card__inner">
+        <img src="https://lp-info-02.vercel.app/depoimentos/testimonial-story-luciana.jpg" alt="Depoimento em story da Luciana" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMONSTRACAO DE TECNICA -->
+<section class="technique-section" id="tecnica">
+  <div class="container">
+    <div style="max-width:700px; margin:0 auto; text-align:center;" data-reveal>
+      <p class="section-label" style="justify-content:center;">Demonstração de técnica</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+        Da frase comum para a frase com força retórica.
+      </h2>
+      <p style="margin-top:16px; font-size:1.05rem; line-height:1.75;">
+        A diferença não está em palavras difíceis, mas em estrutura, ritmo e intenção.
+      </p>
+    </div>
+    <div class="technique-grid">
+      <div class="technique-card technique-card--before" data-reveal>
+        <p class="technique-card__label">Antes</p>
+        <p class="technique-card__quote">&ldquo;Eu queria compartilhar algumas ideias que talvez possam te ajudar a melhorar a sua comunicação.&rdquo;</p>
+      </div>
+      <div class="technique-card technique-card--after" data-reveal>
+        <p class="technique-card__label">Depois</p>
+        <p class="technique-card__quote">&ldquo;Se você quer ser lembrado pelo que sabe, precisa primeiro ser compreendido pelo que diz.&rdquo;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM E -->
+<section class="audience-section" id="publico">
+  <div class="container">
+    <p class="section-label" data-reveal>Para quem é</p>
+    <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1; color:var(--navy);" data-reveal>
+      Este curso é para você se já superou o medo mas ainda luta com o caos.
+    </h2>
+
+    <div class="forwho-is" data-reveal>
+      <div class="forwho-card">
+        <div class="forwho-card__num" aria-hidden="true">01</div>
+        <div>
+          <h3 class="forwho-card__role">Mentor</h3>
+          <p class="forwho-card__text">Você domina o seu assunto, mas suas aulas às vezes deixam o aluno perdido. Você quer que cada palavra sua seja um degrau claro para quem está começando.</p>
+        </div>
+      </div>
+      <div class="forwho-card">
+        <div class="forwho-card__num" aria-hidden="true">02</div>
+        <div>
+          <h3 class="forwho-card__role">Especialista</h3>
+          <p class="forwho-card__text">Você tem anos de experiência que ninguém aproveita porque você ainda não aprendeu a traduzir o que sabe para quem precisa saber.</p>
+        </div>
+      </div>
+      <div class="forwho-card">
+        <div class="forwho-card__num" aria-hidden="true">03</div>
+        <div>
+          <h3 class="forwho-card__role">Criador de Conteúdo</h3>
+          <p class="forwho-card__text">Seus vídeos estão tecnicamente bons, mas faltam estrutura e impacto. Você quer parar de improvisar e começar a construir.</p>
+        </div>
+      </div>
+      <div class="forwho-card">
+        <div class="forwho-card__num" aria-hidden="true">04</div>
+        <div>
+          <h3 class="forwho-card__role">Líder</h3>
+          <p class="forwho-card__text">Você apresenta projetos, conduz reuniões, lidera equipes. E sente que o que você comunica raramente chega com a força que você pretendia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="forwho-divider" data-reveal><span>Não é para você se…</span></div>
+
+    <div class="forwho-not" data-reveal>
+      <div class="notfor-item">
+        <span class="notfor-item__x" aria-hidden="true">&#10005;</span>
+        <p class="notfor-item__text">Busca fórmulas mágicas sem compromisso com prática real.</p>
+      </div>
+      <div class="notfor-item">
+        <span class="notfor-item__x" aria-hidden="true">&#10005;</span>
+        <p class="notfor-item__text">Quer apenas "parecer" comunicativo sem mudar a estrutura do pensamento.</p>
+      </div>
+      <div class="notfor-item">
+        <span class="notfor-item__x" aria-hidden="true">&#10005;</span>
+        <p class="notfor-item__text">Espera transformar a comunicação sem aplicar os exercícios de cada módulo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL BAND -->
+<section class="proof-band" id="prova-social">
+  <div class="proof-band-bg">
+    <img src="https://lp-info-02.vercel.app/images/palco-prova-social-principal.jpg" alt="Diego Knebel palestrando para audiência corporativa" loading="lazy">
+  </div>
+  <div class="proof-band-overlay"></div>
+  <div class="container" style="position:relative; z-index:10; padding-top:80px; padding-bottom:80px;">
+    <div style="max-width:520px;">
+      <p class="section-label" data-reveal>Prova real</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.8rem); line-height:1.1;" data-reveal>
+        Centenas de profissionais<br><span style="color:var(--terracota)">já transformaram sua voz.</span>
+      </h2>
+      <p style="margin-top:20px; font-size:1.1rem; line-height:1.75; color:rgba(241,218,178,0.7);" data-reveal>
+        Em palestras, treinamentos corporativos e mentorias presenciais. O método funciona em qualquer formato, para qualquer audiência.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE DIEGO -->
+<section class="about-section" id="diego">
+  <img src="https://lp-info-02.vercel.app/images/sobre-background.jpg" alt="" aria-hidden="true" class="sobre-bg-img" loading="lazy">
+  <div class="about-overlay"></div>
+  <div class="container">
+    <div class="about-grid">
+      <div data-reveal>
+        <img src="https://lp-info-02.vercel.app/images/sobre-com-livro.jpg" alt="Diego Knebel" class="about-photo" loading="lazy">
+      </div>
+      <div data-reveal>
+        <p class="section-label">Quem vai te guiar</p>
+        <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+          Autoridade com presença<br><span style="color:var(--terracota)">didática e direção</span> estratégica.
+        </h2>
+        <div style="margin-top:24px;">
+          <p style="font-size:1.05rem; line-height:1.75; margin-bottom:16px;">Há anos Diego estuda uma pergunta que ninguém pergunta alto: por que especialistas brilhantes são ignorados enquanto comunicadores medíocres são seguidos?</p>
+          <p style="font-size:1.05rem; line-height:1.75; margin-bottom:16px;">A resposta não estava no carisma nem no dom da palavra. Estava na engenharia. Diego construiu um método, testado em centenas de alunos, que transforma o caos mental em clareza soberana.</p>
+          <p style="font-size:1.05rem; line-height:1.75; margin-bottom:16px;">O Arquiteto de Ideias é esse método. Didático, denso, sem rodeio. Cada aula foi roteirizada para que você sinta a transformação antes de terminar o módulo.</p>
+          <p style="font-size:1.05rem; line-height:1.75;">Aqui Diego ensina Engenharia Verbal. Isso vai aumentar a sua performance não somente em suas apresentações mas em sua vida inteira!</p>
+        </div>
+        <div style="margin-top:24px; display:flex; align-items:center; gap:16px;">
+          <img src="https://lp-info-02.vercel.app/images/sobre-humanizado.jpg" alt="Diego Knebel" class="about-avatar" loading="lazy">
+          <p style="font-size:14px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracota);">@diegoknebel_</p>
+        </div>
+        <div class="about-stats">
+          <div class="about-stat-card">
+            <p class="about-stat-card__label">Alunos impactados</p>
+            <p class="about-stat-card__value"><span data-counter="500">0</span>+</p>
+          </div>
+          <div class="about-stat-card">
+            <p class="about-stat-card__label">Aulas estruturadas</p>
+            <p class="about-stat-card__value"><span data-counter="16">0</span></p>
+          </div>
+          <div class="about-stat-card">
+            <p class="about-stat-card__label">Horas de conteúdo</p>
+            <p class="about-stat-card__value"><span data-counter="12">0</span>h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEBRA DE OBJECAO -->
+<section class="objections-section" id="objecoes-pre">
+  <div class="container" style="max-width:800px;">
+    <div style="text-align:center;" data-reveal>
+      <p class="section-label" style="justify-content:center;">Talvez você esteja pensando...</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+        Respostas para o que está passando pela sua cabeça agora.
+      </h2>
+    </div>
+    <div style="margin-top:40px;" data-reveal>
+      <div class="objection-block">
+        <p class="objection-block__q">Eu não nasci com dom para falar</p>
+        <p class="objection-block__a">Engenharia não precisa de talento. O Arquiteto de Ideias foi desenhado para método, não para dom inato. Você aprende estrutura replicável — a mesma que especialistas brilhantes usam para ser entendidos.</p>
+      </div>
+      <div class="objection-block">
+        <p class="objection-block__q">Já fiz cursos de comunicação antes</p>
+        <p class="objection-block__a">A maioria dos cursos ensina postura, respiração e "como não travar". O Arquiteto vai mais fundo: você aprende a construir a mensagem antes de abrir a boca. É a diferença entre ajustar o semblante e reformular a arquitetura do que você diz.</p>
+      </div>
+      <div class="objection-block">
+        <p class="objection-block__q">Não tenho muito tempo</p>
+        <p class="objection-block__a">Cada aula tem entre 3 e 9 minutos, com exercícios práticos ao final. Você pode seguir o ritmo que quiser, e o acesso é vitalício. Quem aplica os exercícios das primeiras 4 aulas já nota a diferença na próxima reunião.</p>
+      </div>
+      <div class="objection-block">
+        <p class="objection-block__q">Não quero parecer vendedor</p>
+        <p class="objection-block__a">O método não ensina persuasão manipulativa. Ele ensina clareza com estrutura — o tipo de comunicação que gera confiança, não pressão. Você não vai soar como vendedor; vai soar como alguém que domina o que fala.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA + CTA PRINCIPAL -->
+<section class="offer-section" id="oferta">
+  <div class="container">
+    <div class="offer-grid">
+      <div data-reveal>
+        <p class="section-label">O investimento</p>
+        <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+          Uma habilidade que ninguém<br>vai tirar de você.
+        </h2>
+        <ul style="margin-top:28px;">
+          <li style="display:flex; align-items:flex-start; gap:12px; padding:8px 0; font-size:16px; color:rgba(241,218,178,0.7);"><span style="color:var(--terracota); margin-top:2px;">&#10003;</span>16 aulas + 1 aula bônus em vídeo com roteiros completos</li>
+          <li style="display:flex; align-items:flex-start; gap:12px; padding:8px 0; font-size:16px; color:rgba(241,218,178,0.7);"><span style="color:var(--terracota); margin-top:2px;">&#10003;</span>4 módulos: Base, Estrutura, Retórica e Soberania</li>
+          <li style="display:flex; align-items:flex-start; gap:12px; padding:8px 0; font-size:16px; color:rgba(241,218,178,0.7);"><span style="color:var(--terracota); margin-top:2px;">&#10003;</span>Exercícios práticos em cada aula para fixação imediata</li>
+          <li style="display:flex; align-items:flex-start; gap:12px; padding:8px 0; font-size:16px; color:rgba(241,218,178,0.7);"><span style="color:var(--terracota); margin-top:2px;">&#10003;</span>Método do Paraquedas: improviso estruturado de emergência</li>
+          <li style="display:flex; align-items:flex-start; gap:12px; padding:8px 0; font-size:16px; color:rgba(241,218,178,0.7);"><span style="color:var(--terracota); margin-top:2px;">&#10003;</span>Aula Bônus: O Trono Vazio, a ponte para o próximo nível</li>
+          <li style="display:flex; align-items:flex-start; gap:12px; padding:8px 0; font-size:16px; color:rgba(241,218,178,0.7);"><span style="color:var(--terracota); margin-top:2px;">&#10003;</span>Acesso vitalício, incluindo atualizações futuras</li>
+          <li style="display:flex; align-items:flex-start; gap:12px; padding:8px 0; font-size:16px; color:rgba(241,218,178,0.7);"><span style="color:var(--terracota); margin-top:2px;">&#10003;</span>Suporte</li>
+        </ul>
+      </div>
+      <div data-reveal>
+        <div class="price-card" id="comprar">
+          <p class="section-label">Condição de lançamento</p>
+          <p class="price-from" style="margin-top:16px;">De R$ 397,00</p>
+          <div class="price-installment">
+            <span class="price-installment__times">12x de</span>
+            <span class="price-installment__value">R$&nbsp;15,11</span>
+          </div>
+          <p class="price-lump">ou R$ 147,00 à vista</p>
+          <div class="offer-buttons">
+            <a href="https://payfast.greenn.com.br/qhxpds7/offer/IZ0aT7" target="_blank" rel="noopener noreferrer" class="cta-btn cta-primary" style="width:100%;">
+              Garantir minha inscrição
+            </a>
+            <a href="https://wa.me/5545999753768?text=Ol%C3%A1!%20Estava%20na%20p%C3%A1gina%20do%20Arquit%C3%A9to%20de%20Id%C3%A9ias%2C%20curso%20do%20Diego%20Knebel%2C%20falo%20com%20a%20equipe%20de%20suporte%3F" target="_blank" rel="noopener noreferrer" class="cta-secondary">
+              Falar com a equipe
+            </a>
+          </div>
+          <p class="offer-micro">Pagamento seguro · Acesso em poucos minutos · Suporte para configuração inicial</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="guarantee-section" id="garantia">
+  <div class="container">
+    <div class="guarantee-card" data-reveal>
+      <p class="section-label" style="justify-content:center;">Garantia</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.8rem,4vw,2.5rem);">7 dias de garantia total</h2>
+      <p style="margin-top:20px; max-width:600px; margin-left:auto; margin-right:auto; font-size:1.1rem; line-height:1.75;">
+        Você pode testar o conteúdo com segurança. Acesse o curso, aplique os primeiros
+        exercícios e, se não sentir que a sua mente está mais organizada e a sua fala mais
+        potente, devolvemos 100% do valor. Sem perguntas, sem burocracia.
+      </p>
+      <p style="margin-top:16px; font-size:1.1rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--terracota);">
+        O risco é todo nosso.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA REPETIDO -->
+<section class="cta-section cta-section--deep" id="cta-repeat">
+  <div class="container" style="max-width:700px;" data-reveal>
+    <h2 style="font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1; text-align:center;">
+      Você chegou até aqui por um motivo.<br>A decisão é sua.
+    </h2>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="https://payfast.greenn.com.br/qhxpds7/offer/IZ0aT7" target="_blank" rel="noopener noreferrer" class="cta-btn cta-primary">
+        Quero garantir minha vaga no Arquiteto de Ideias
+      </a>
+    </div>
+    <p style="text-align:center; margin-top:12px; font-size:13px; color:rgba(241,218,178,0.4);">
+      Garantia incondicional de 7 dias · Acesso vitalício
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div style="max-width:700px; margin:0 auto; text-align:center;" data-reveal>
+      <p class="section-label" style="justify-content:center;">Antes de decidir, leia isso.</p>
+      <h2 style="margin-top:16px; font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.1;">
+        Respostas diretas para as dúvidas mais comuns.
+      </h2>
+    </div>
+    <div class="faq-list" id="faqList">
+
+      <div class="faq-item">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-trigger__text">Eu não nasci com dom para falar. Esse curso é para mim?</span>
+          <span class="faq-toggle" aria-hidden="true"><span class="faq-toggle-line faq-toggle-line--h"></span><span class="faq-toggle-line faq-toggle-line--v"></span></span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel__inner"><p class="faq-panel__text">Sim. O Arquiteto de Ideias foi desenhado para método, não para talento inato. Você aprende estrutura replicável, a mesma que especialistas brilhantes usam para ser entendidos. Dom não ensina. Engenharia, sim.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-trigger__text">Já fiz cursos de comunicação antes. O que muda aqui?</span>
+          <span class="faq-toggle" aria-hidden="true"><span class="faq-toggle-line faq-toggle-line--h"></span><span class="faq-toggle-line faq-toggle-line--v"></span></span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel__inner"><p class="faq-panel__text">A maioria dos cursos ensina postura, respiração e "como não travar". O Arquiteto vai mais fundo: você aprende a construir a mensagem antes de abrir a boca. É a diferença entre ajustar o semblante e reformular a arquitetura do que você diz.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-trigger__text">Não tenho muito tempo. Vou conseguir aplicar?</span>
+          <span class="faq-toggle" aria-hidden="true"><span class="faq-toggle-line faq-toggle-line--h"></span><span class="faq-toggle-line faq-toggle-line--v"></span></span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel__inner"><p class="faq-panel__text">Cada aula tem entre 3 e 9 minutos, com exercícios práticos ao final. Você pode seguir o ritmo que quiser, e o acesso é vitalício. Quem aplica os exercícios das primeiras 4 aulas já nota a diferença na próxima reunião ou gravação.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-trigger__text">Funciona para quem não quer parecer 'vendedor'?</span>
+          <span class="faq-toggle" aria-hidden="true"><span class="faq-toggle-line faq-toggle-line--h"></span><span class="faq-toggle-line faq-toggle-line--v"></span></span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel__inner"><p class="faq-panel__text">Completamente. O método não ensina persuasão manipulativa. Ele ensina clareza com estrutura, o tipo de comunicação que gera confiança, não pressão. Você não vai soar como vendedor; vai soar como alguém que domina o que fala.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-trigger__text">Como funciona o acesso ao curso?</span>
+          <span class="faq-toggle" aria-hidden="true"><span class="faq-toggle-line faq-toggle-line--h"></span><span class="faq-toggle-line faq-toggle-line--v"></span></span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel__inner"><p class="faq-panel__text">Após a compra, você recebe acesso imediato à plataforma de membros.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-trigger__text">Existe suporte após a compra?</span>
+          <span class="faq-toggle" aria-hidden="true"><span class="faq-toggle-line faq-toggle-line--h"></span><span class="faq-toggle-line faq-toggle-line--v"></span></span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel__inner"><p class="faq-panel__text">Sim, após a compra terá uma opção para tira dúvidas e suporte na plataforma.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-trigger" aria-expanded="false">
+          <span class="faq-trigger__text">Qual o investimento?</span>
+          <span class="faq-toggle" aria-hidden="true"><span class="faq-toggle-line faq-toggle-line--h"></span><span class="faq-toggle-line faq-toggle-line--v"></span></span>
+        </button>
+        <div class="faq-panel"><div class="faq-panel__inner"><p class="faq-panel__text">R$ 147,00 à vista ou em até 12x de R$ 15,11. Acesso vitalício com garantia incondicional de 7 dias.</p></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section cta-section--dark" id="cta-final" style="padding-bottom:0;">
+  <div class="container" style="max-width:700px;" data-reveal>
+    <img src="https://lp-info-02.vercel.app/logos/logo-icone-terracota.png" alt="" style="width:48px; height:48px; margin:0 auto 24px; opacity:0.7;" loading="lazy">
+    <h2 style="font-size:clamp(1.5rem,4vw,2.5rem); line-height:1.15; text-align:center;">
+      O mundo está em silêncio esperando pelo seu comando.
+    </h2>
+    <p style="text-align:center; margin-top:16px; font-size:1.1rem; line-height:1.75;">
+      Sua voz é a ponte. Vamos construí-la?
+    </p>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="https://payfast.greenn.com.br/qhxpds7/offer/IZ0aT7" target="_blank" rel="noopener noreferrer" class="cta-btn cta-primary">
+        Garantir minha vaga agora
+      </a>
+    </div>
+    <p style="text-align:center; margin-top:12px; font-size:13px; color:rgba(241,218,178,0.4);">
+      Garantia incondicional de 7 dias · 12x de R$ 15,11
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <img src="https://lp-info-02.vercel.app/logos/logo-footer-escuro.png" alt="Diego Knebel. Mentoria e Desenvolvimento" class="logo-footer-img" width="160" height="56" loading="lazy">
+    <p class="footer-links" style="margin-top:24px;">
+      <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a>
+    </p>
+    <p class="footer-copy">
+      &copy; 2026 Diego Knebel · @diegoknebel_ · Todos os direitos reservados
+    </p>
+  </div>
+</footer>
+
+</div><!-- /phase-2-content -->
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  var UNLOCK_TIME = 155; // 2:35
+  var unlocked = false;
+
+  // ── ELEMENTS ──────────────────────────────────────────────
+  var video = document.getElementById('vslVideo');
+  var player = document.getElementById('vslPlayer');
+  var bigPlay = document.getElementById('vslBigPlay');
+  var ctrlPlay = document.getElementById('vslCtrlPlay');
+  var progressPlayed = document.getElementById('vslProgressPlayed');
+  var progressMax = document.getElementById('vslProgressMax');
+  var progressSeek = document.getElementById('vslProgressSeek');
+  var timeCurrent = document.getElementById('vslTimeCurrent');
+  var timeDuration = document.getElementById('vslTimeDuration');
+  var volSlider = document.getElementById('vslVolSlider');
+  var ctrlVol = document.getElementById('vslCtrlVol');
+  var vslCountdown = document.getElementById('vslCountdown');
+  var vslHint = document.getElementById('vslHint');
+
+  var maxWatched = 0;
+  var controlsTimeout;
+
+  // ── HELPERS ───────────────────────────────────────────────
+  function fmt(s) {
+    var m = Math.floor(s / 60);
+    var sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  function updatePlayIcon() {
+    var svg = ctrlPlay.querySelector('svg');
+    if (video.paused) {
+      svg.innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+    } else {
+      svg.innerHTML = '<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';
+    }
+  }
+
+  function showControls() {
+    player.classList.add('show-controls');
+    clearTimeout(controlsTimeout);
+    controlsTimeout = setTimeout(function() {
+      if (!video.paused) player.classList.remove('show-controls');
+    }, 3000);
+  }
+
+  // ── PLAY/PAUSE ────────────────────────────────────────────
+  function togglePlay() {
+    if (video.paused) {
+      video.play();
+      bigPlay.classList.add('hidden');
+    } else {
+      video.pause();
+    }
+    updatePlayIcon();
+    showControls();
+  }
+
+  bigPlay.addEventListener('click', togglePlay);
+  ctrlPlay.addEventListener('click', togglePlay);
+  video.addEventListener('click', function() {
+    togglePlay();
+    showControls();
+  });
+  video.addEventListener('play', updatePlayIcon);
+  video.addEventListener('pause', function() {
+    updatePlayIcon();
+    player.classList.add('show-controls');
+  });
+
+  // ── DURATION ──────────────────────────────────────────────
+  video.addEventListener('loadedmetadata', function() {
+    timeDuration.textContent = fmt(video.duration);
+    progressSeek.max = video.duration;
+  });
+
+  // ── TIME UPDATE + SCRUBBING LOCK ──────────────────────────
+  video.addEventListener('timeupdate', function() {
+    if (video.currentTime > maxWatched) maxWatched = video.currentTime;
+
+    var dur = video.duration || 1;
+    var pctPlayed = (video.currentTime / dur) * 100;
+    var pctMax = (maxWatched / dur) * 100;
+    progressPlayed.style.width = pctPlayed + '%';
+    progressMax.style.width = pctMax + '%';
+    progressSeek.value = video.currentTime;
+    timeCurrent.textContent = fmt(video.currentTime);
+
+    // Countdown: time remaining until unlock
+    if (!unlocked) {
+      var remaining = Math.max(0, UNLOCK_TIME - video.currentTime);
+      vslCountdown.textContent = fmt(remaining);
+    }
+
+    // Check unlock
+    if (video.currentTime >= UNLOCK_TIME && !unlocked) {
+      unlockPhase2();
+    }
+  });
+
+  // Scrubbing lock: can't seek beyond maxWatched
+  video.addEventListener('seeking', function() {
+    if (video.currentTime > maxWatched + 0.5) {
+      video.currentTime = maxWatched;
+    }
+  });
+
+  // Progress bar seek
+  progressSeek.addEventListener('input', function() {
+    var seekTo = parseFloat(this.value);
+    if (seekTo > maxWatched) {
+      video.currentTime = maxWatched;
+      this.value = maxWatched;
+    } else {
+      video.currentTime = seekTo;
+    }
+  });
+
+  // ── VOLUME ────────────────────────────────────────────────
+  volSlider.addEventListener('input', function() {
+    video.volume = parseFloat(this.value);
+    video.muted = (video.volume === 0);
+  });
+  ctrlVol.addEventListener('click', function() {
+    video.muted = !video.muted;
+    volSlider.value = video.muted ? 0 : video.volume;
+  });
+
+  // ── CONTROLS VISIBILITY ───────────────────────────────────
+  player.addEventListener('mousemove', showControls);
+  player.addEventListener('touchstart', showControls, { passive: true });
+
+  // ── PHASE 2 UNLOCK ────────────────────────────────────────
+  function unlockPhase2() {
+    if (unlocked) return;
+    unlocked = true;
+
+    // Show phase 2
+    var phase2 = document.getElementById('phase2');
+    phase2.classList.add('is-unlocked');
+
+    // Show navbar CTA
+    var phase2Elements = document.querySelectorAll('.phase-2-element');
+    for (var i = 0; i < phase2Elements.length; i++) {
+      phase2Elements[i].style.display = '';
+    }
+
+    // Update hint
+    vslHint.innerHTML = '<span style="color:var(--terracota); font-weight:600;">&#10003; Conteúdo desbloqueado</span>';
+
+    // Auto-scroll after animation
+    setTimeout(function() {
+      phase2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 400);
+
+    // Initialize scroll reveal for newly visible elements
+    setTimeout(initRevealObserver, 100);
+    setTimeout(initLabelObserver, 100);
+  }
+
+  // ── PREVIEW MODE ──────────────────────────────────────────
+  if (new URLSearchParams(window.location.search).get('preview') === 'true') {
+    setTimeout(unlockPhase2, 100);
+  }
+
+  // ── SCROLL REVEAL ─────────────────────────────────────────
+  function initRevealObserver() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var parent = entry.target.parentElement;
+          var siblings = parent ? parent.querySelectorAll('[data-reveal]') : [];
+          var idx = Array.from(siblings).indexOf(entry.target);
+          entry.target.style.transitionDelay = (idx * 80) + 'ms';
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    var els = document.querySelectorAll('[data-reveal]:not(.is-revealed)');
+    for (var i = 0; i < els.length; i++) observer.observe(els[i]);
+  }
+
+  function initLabelObserver() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('line-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    var labels = document.querySelectorAll('.section-label:not(.line-revealed)');
+    for (var i = 0; i < labels.length; i++) observer.observe(labels[i]);
+  }
+
+  // Init for phase 1 elements
+  initRevealObserver();
+  initLabelObserver();
+
+  // ── ANIMATED COUNTERS ─────────────────────────────────────
+  function initCounters() {
+    var counterEls = document.querySelectorAll('[data-counter]:not(.counted)');
+    var counterObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.classList.add('counted');
+          var target = parseInt(el.getAttribute('data-counter'));
+          var dur = 1400;
+          var start = performance.now();
+          function update(now) {
+            var p = Math.min((now - start) / dur, 1);
+            var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+            el.textContent = Math.round(eased * target).toLocaleString('pt-BR');
+            if (p < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    for (var i = 0; i < counterEls.length; i++) counterObs.observe(counterEls[i]);
+  }
+  initCounters();
+
+  // Re-init counters when phase 2 unlocks (via MutationObserver)
+  var phase2El = document.getElementById('phase2');
+  var mo = new MutationObserver(function() {
+    if (phase2El.classList.contains('is-unlocked')) {
+      initCounters();
+      mo.disconnect();
+    }
+  });
+  mo.observe(phase2El, { attributes: true, attributeFilter: ['class'] });
+
+  // ── MODULE ACCORDION ──────────────────────────────────────
+  var moduleAccordion = document.getElementById('modulesAccordion');
+  if (moduleAccordion) {
+    moduleAccordion.addEventListener('click', function(e) {
+      var trigger = e.target.closest('.module-accordion-trigger');
+      if (!trigger) return;
+
+      var item = trigger.parentElement;
+      var panel = item.querySelector('.module-accordion-panel');
+      var arrow = item.querySelector('.module-arrow');
+      var isOpen = item.classList.contains('is-open');
+
+      // Close all
+      var items = moduleAccordion.querySelectorAll('.module-accordion-item');
+      for (var i = 0; i < items.length; i++) {
+        items[i].classList.remove('is-open');
+        items[i].querySelector('.module-accordion-panel').classList.remove('is-open');
+        items[i].querySelector('.module-arrow').classList.remove('is-open');
+        items[i].querySelector('.module-accordion-trigger').setAttribute('aria-expanded', 'false');
+      }
+
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('is-open');
+        panel.classList.add('is-open');
+        arrow.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  // ── FAQ ACCORDION ─────────────────────────────────────────
+  var faqList = document.getElementById('faqList');
+  if (faqList) {
+    faqList.addEventListener('click', function(e) {
+      var trigger = e.target.closest('.faq-trigger');
+      if (!trigger) return;
+
+      var item = trigger.parentElement;
+      var panel = item.querySelector('.faq-panel');
+      var isOpen = item.classList.contains('is-open');
+
+      // Close all
+      var items = faqList.querySelectorAll('.faq-item');
+      for (var i = 0; i < items.length; i++) {
+        items[i].classList.remove('is-open');
+        items[i].querySelector('.faq-panel').classList.remove('is-open');
+        items[i].querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+      }
+
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('is-open');
+        panel.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  // ── NAVBAR SCROLL ─────────────────────────────────────────
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── MEDIA TESTIMONIAL PLAY/PAUSE ──────────────────────────
+  var mediaCards = document.querySelectorAll('[data-video-testi]');
+  for (var i = 0; i < mediaCards.length; i++) {
+    (function(card) {
+      var vid = card.querySelector('video');
+      var btn = card.querySelector('.media-play-btn');
+      if (!vid || !btn) return;
+
+      function toggle() {
+        if (vid.paused) {
+          vid.play();
+          card.classList.add('is-playing');
+        } else {
+          vid.pause();
+          card.classList.remove('is-playing');
+        }
+      }
+      btn.addEventListener('click', toggle);
+      vid.addEventListener('click', toggle);
+      vid.addEventListener('ended', function() { card.classList.remove('is-playing'); });
+    })(mediaCards[i]);
+  }
+
+})();
+</script>
+
+</body>
+</html>
