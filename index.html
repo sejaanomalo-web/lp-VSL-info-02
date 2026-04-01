@@ -76,39 +76,61 @@ p strong { font-weight: 600; color: var(--creme); }
 /* ── CONTAINER ─────────────────────────────────────────────── */
 .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-px); }
 
-/* ── AMBIENT BACKGROUND — PREMIUM GLOW ─────────────────────── */
-body::before {
-  content: '';
+/* ── ANIMATED BACKGROUND LIGHTS ────────────────────────────── */
+.bg-lights {
   position: fixed;
-  top: -20vh; left: 50%;
-  transform: translateX(-50%);
-  width: 1200px; height: 1200px;
-  background:
-    radial-gradient(ellipse 600px 400px at 50% 30%, rgba(211,69,30,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 400px 600px at 30% 60%, rgba(211,69,30,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 400px 600px at 70% 60%, rgba(211,69,30,0.06) 0%, transparent 60%);
+  inset: 0;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
-body::after {
-  content: '';
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw; height: 100vh;
-  background:
-    radial-gradient(ellipse 800px 300px at 50% 20%, rgba(211,69,30,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 600px 200px at 50% 80%, rgba(42,31,94,0.4) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+.bg-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
 }
-
-/* ── GRID OVERLAY ──────────────────────────────────────────── */
-.grid-overlay {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
+.bg-light--1 {
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(211,69,30,0.15) 0%, transparent 70%);
+  top: -10%; left: 20%;
+  animation: lightFloat1 12s ease-in-out infinite;
+}
+.bg-light--2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse, rgba(211,69,30,0.10) 0%, transparent 70%);
+  top: 40%; right: -10%;
+  animation: lightFloat2 15s ease-in-out infinite;
+}
+.bg-light--3 {
+  width: 700px; height: 350px;
+  background: radial-gradient(ellipse, rgba(211,69,30,0.08) 0%, transparent 70%);
+  bottom: -5%; left: -5%;
+  animation: lightFloat3 18s ease-in-out infinite;
+}
+.bg-light--4 {
+  width: 300px; height: 300px;
+  background: radial-gradient(ellipse, rgba(42,31,94,0.25) 0%, transparent 70%);
+  top: 20%; right: 30%;
+  animation: lightFloat4 10s ease-in-out infinite;
+}
+@keyframes lightFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(80px, 40px) scale(1.1); }
+  66% { transform: translate(-40px, 20px) scale(0.95); }
+}
+@keyframes lightFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, -50px) scale(1.15); }
+}
+@keyframes lightFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(50px, -30px) scale(1.08); }
+  70% { transform: translate(-30px, -15px) scale(0.92); }
+}
+@keyframes lightFloat4 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-40px, 30px); }
 }
 
 /* ── SECTION LABELS ────────────────────────────────────────── */
@@ -250,12 +272,6 @@ body::after {
   overflow: hidden;
   background: var(--navy-deep);
 }
-.fase1-wrapper .grid-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  z-index: 0;
-}
 /* Lock scroll on body when Fase 1 is active */
 body.fase1-locked {
   overflow: hidden;
@@ -278,114 +294,83 @@ body.fase1-locked {
   gap: 0;
 }
 
-/* ── GLASS CONTAINER — APPLE STYLE ─────────────────────────── */
-.glass-hero {
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  background: linear-gradient(135deg,
-    rgba(255,255,255,0.07) 0%,
-    rgba(255,255,255,0.03) 40%,
-    rgba(211,69,30,0.04) 100%
-  );
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: 40px 32px 32px;
-  box-shadow:
-    0 32px 80px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    inset 0 -1px 0 rgba(0,0,0,0.15);
-  position: relative;
-  overflow: hidden;
-}
-.glass-hero::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(ellipse at 30% 20%, rgba(211,69,30,0.06) 0%, transparent 50%);
-  pointer-events: none;
-}
-
 /* ── HERO HEADLINE ─────────────────────────────────────────── */
 .hero-headline {
-  font-size: clamp(1.6rem, 5.5vw, 3rem);
-  font-weight: 900;
-  line-height: 1.1;
+  font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--creme);
   animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.2s both;
-  margin-bottom: 8px;
+  margin-bottom: 0;
+  max-width: 700px;
 }
 .hero-headline .text-terracota { color: var(--terracota); }
 
 /* ── VSL PLAYER ────────────────────────────────────────────── */
 .vsl-section {
   width: 100%;
-  margin-top: 24px;
-}
-.vsl-player-glass {
-  backdrop-filter: blur(20px) saturate(170%);
-  -webkit-backdrop-filter: blur(20px) saturate(170%);
-  background: linear-gradient(135deg,
-    rgba(255,255,255,0.06) 0%,
-    rgba(255,255,255,0.02) 50%,
-    rgba(211,69,30,0.03) 100%
-  );
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow:
-    0 40px 100px rgba(0,0,0,0.45),
-    0 0 0 1px rgba(255,255,255,0.04),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+  margin-top: 28px;
 }
 .vsl-player {
   position: relative;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: #000;
   aspect-ratio: 16/9;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+/* ── UNMUTE OVERLAY ────────────────────────────────────────── */
+.vsl-unmute {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(0,0,0,0.45);
+  z-index: 15;
+  cursor: pointer;
+  transition: opacity 400ms;
+}
+.vsl-unmute.hidden { opacity: 0; pointer-events: none; }
+.vsl-unmute-box {
+  background: var(--terracota);
+  border-radius: 20px;
+  padding: 28px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 16px 48px rgba(211,69,30,0.35);
+  transition: transform 200ms;
+}
+.vsl-unmute:hover .vsl-unmute-box { transform: scale(1.03); }
+.vsl-unmute-box__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.vsl-unmute-box__icon {
+  width: 56px; height: 56px;
+}
+.vsl-unmute-box__icon svg { width: 100%; height: 100%; }
+.vsl-unmute-box__sub {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.02em;
 }
 .vsl-player video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-.vsl-big-play {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.35);
-  z-index: 5;
-  cursor: pointer;
-  transition: opacity 300ms;
-}
-.vsl-big-play.hidden { opacity: 0; pointer-events: none; }
-.vsl-big-play-btn {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(211,69,30,0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  animation: playPulse 2.2s ease-in-out infinite;
-  transition: background 200ms, transform 200ms;
-}
-.vsl-big-play-btn:hover { background: var(--terracota); transform: scale(1.08); }
-.vsl-big-play-btn::after {
-  content: '';
-  width: 0; height: 0;
-  border-top: 14px solid transparent;
-  border-bottom: 14px solid transparent;
-  border-left: 22px solid #fff;
-  margin-left: 5px;
 }
 
 /* Controls bar */
@@ -1357,13 +1342,16 @@ body.fase1-locked {
 }
 @media (max-width: 480px) {
   .logo-navbar-img { height: 22px; }
-  .hero-headline { font-size: clamp(1.3rem, 5.5vw, 1.8rem); }
-  .glass-hero { padding: 24px 16px 20px; border-radius: 18px; }
-  .vsl-player-glass { padding: 6px; border-radius: 14px; }
+  .hero-headline { font-size: clamp(1.1rem, 4.8vw, 1.5rem); }
   .vsl-player { border-radius: 10px; }
   .vsl-big-play-btn { width: 56px; height: 56px; }
   .vsl-vol-slider { display: none; }
   .vsl-section { margin-top: 16px; }
+  .vsl-unmute-box { padding: 20px 28px; border-radius: 16px; }
+  .vsl-unmute-box__title { font-size: 15px; }
+  .vsl-unmute-box__icon { width: 44px; height: 44px; }
+  .vsl-unmute-box__sub { font-size: 13px; }
+  .bg-light { filter: blur(60px); }
 }
 
 /* ── REDUCED MOTION ────────────────────────────────────────── */
@@ -1399,49 +1387,61 @@ body.fase1-locked {
   </div>
 </nav>
 
+<!-- ANIMATED BACKGROUND LIGHTS -->
+<div class="bg-lights" aria-hidden="true">
+  <div class="bg-light bg-light--1"></div>
+  <div class="bg-light bg-light--2"></div>
+  <div class="bg-light bg-light--3"></div>
+  <div class="bg-light bg-light--4"></div>
+</div>
+
 <!-- FASE 1 — FULLSCREEN WRAPPER -->
 <div class="fase1-wrapper" id="fase1">
-  <div class="grid-overlay" aria-hidden="true"></div>
-
   <div class="fase1-content">
-    <!-- GLASS HEADLINE -->
-    <div class="glass-hero">
-      <h1 class="hero-headline">
-        Você sabe demais para ser ignorado.<br>
-        <span class="text-terracota">Aprenda a falar na altura do que sabe.</span>
-      </h1>
-    </div>
+    <!-- HEADLINE -->
+    <h1 class="hero-headline">
+      Você sabe demais para ser ignorado.<br>
+      <span class="text-terracota">Aprenda a falar na altura do que sabe.</span>
+    </h1>
 
     <!-- VSL PLAYER -->
     <div class="vsl-section">
-      <div class="vsl-player-glass">
-        <div class="vsl-player" id="vslPlayer">
-          <video id="vslVideo" preload="metadata" playsinline>
-            <source src="/video/vsl-arquiteto.mp4" type="video/mp4">
-          </video>
+      <div class="vsl-player" id="vslPlayer">
+        <video id="vslVideo" preload="auto" playsinline muted>
+          <source src="/video/vsl-arquiteto.mp4" type="video/mp4">
+        </video>
 
-          <!-- Big play overlay -->
-          <div class="vsl-big-play" id="vslBigPlay">
-            <button class="vsl-big-play-btn" aria-label="Reproduzir vídeo"></button>
+        <!-- Unmute overlay (shown on autoplay) -->
+        <div class="vsl-unmute" id="vslUnmute">
+          <div class="vsl-unmute-box">
+            <span class="vsl-unmute-box__title">Clique aqui</span>
+            <span class="vsl-unmute-box__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+            </span>
+            <span class="vsl-unmute-box__sub">para ativar o som</span>
           </div>
+        </div>
 
-          <!-- Custom controls -->
-          <div class="vsl-controls" id="vslControls">
-            <button class="vsl-ctrl-play" id="vslCtrlPlay" aria-label="Play/Pause">
-              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" id="playIcon"/></svg>
-            </button>
-            <span class="vsl-time" id="vslTimeCurrent">0:00</span>
-            <div class="vsl-progress-wrap" id="vslProgressWrap">
-              <div class="vsl-progress-max" id="vslProgressMax"></div>
-              <div class="vsl-progress-played" id="vslProgressPlayed"></div>
-              <input type="range" class="vsl-progress-input" id="vslProgressSeek" min="0" max="100" step="0.1" value="0" aria-label="Progresso do vídeo">
-            </div>
-            <span class="vsl-time" id="vslTimeDuration">0:00</span>
-            <button class="vsl-ctrl-vol" id="vslCtrlVol" aria-label="Volume">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/></svg>
-            </button>
-            <input type="range" class="vsl-vol-slider" id="vslVolSlider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+        <!-- Custom controls -->
+        <div class="vsl-controls" id="vslControls">
+          <button class="vsl-ctrl-play" id="vslCtrlPlay" aria-label="Play/Pause">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" id="playIcon"/></svg>
+          </button>
+          <span class="vsl-time" id="vslTimeCurrent">0:00</span>
+          <div class="vsl-progress-wrap" id="vslProgressWrap">
+            <div class="vsl-progress-max" id="vslProgressMax"></div>
+            <div class="vsl-progress-played" id="vslProgressPlayed"></div>
+            <input type="range" class="vsl-progress-input" id="vslProgressSeek" min="0" max="100" step="0.1" value="0" aria-label="Progresso do vídeo">
           </div>
+          <span class="vsl-time" id="vslTimeDuration">0:00</span>
+          <button class="vsl-ctrl-vol" id="vslCtrlVol" aria-label="Volume">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/></svg>
+          </button>
+          <input type="range" class="vsl-vol-slider" id="vslVolSlider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
         </div>
       </div>
 
@@ -2278,7 +2278,7 @@ body.fase1-locked {
   // ── ELEMENTS ──────────────────────────────────────────────
   var video = document.getElementById('vslVideo');
   var player = document.getElementById('vslPlayer');
-  var bigPlay = document.getElementById('vslBigPlay');
+  var unmuteOverlay = document.getElementById('vslUnmute');
   var ctrlPlay = document.getElementById('vslCtrlPlay');
   var progressPlayed = document.getElementById('vslProgressPlayed');
   var progressMax = document.getElementById('vslProgressMax');
@@ -2295,6 +2295,17 @@ body.fase1-locked {
 
   // ── SCROLL LOCK — FASE 1 ─────────────────────────────────
   document.body.classList.add('fase1-locked');
+
+  // ── AUTOPLAY MUTED ────────────────────────────────────────
+  video.muted = true;
+  video.play().catch(function() {});
+
+  // ── UNMUTE ON CLICK ───────────────────────────────────────
+  unmuteOverlay.addEventListener('click', function() {
+    video.muted = false;
+    volSlider.value = 1;
+    unmuteOverlay.classList.add('hidden');
+  });
 
   // ── WATCHING COUNT — RANDOMIZED ───────────────────────────
   var baseCount = Math.floor(Math.random() * 30) + 35; // 35-64
@@ -2334,7 +2345,6 @@ body.fase1-locked {
   function togglePlay() {
     if (video.paused) {
       video.play();
-      bigPlay.classList.add('hidden');
     } else {
       video.pause();
     }
@@ -2342,9 +2352,15 @@ body.fase1-locked {
     showControls();
   }
 
-  bigPlay.addEventListener('click', togglePlay);
   ctrlPlay.addEventListener('click', togglePlay);
   video.addEventListener('click', function() {
+    // If unmute overlay is visible, unmute instead of toggling
+    if (!unmuteOverlay.classList.contains('hidden')) {
+      video.muted = false;
+      volSlider.value = 1;
+      unmuteOverlay.classList.add('hidden');
+      return;
+    }
     togglePlay();
     showControls();
   });
