@@ -298,7 +298,19 @@ p strong { font-weight: 600; color: var(--creme); }
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--navy-deep);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(211,69,30,0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #150f30 0%, #201747 100%);
+}
+.fase1-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(241,218,178,0.025) 80px),
+    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(241,218,178,0.025) 80px);
+  pointer-events: none;
+  z-index: 0;
 }
 .fase1-bg {
   position: absolute;
@@ -354,6 +366,7 @@ body.fase1-locked {
 /* ── HERO BADGE ────────────────────────────────────────────── */
 .hero-badge {
   display: inline-block;
+  position: relative;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -363,40 +376,40 @@ body.fase1-locked {
   background: rgba(211,69,30,0.06);
   padding: 8px 20px;
   border-radius: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.1s both;
 }
 
 /* ── HERO HEADLINE ─────────────────────────────────────────── */
 .hero-headline-wrap {
   position: relative;
-  padding: 28px 36px;
-  border-radius: 12px;
-  animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.2s both;
-  max-width: 740px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.2s both;
 }
 .hero-headline-wrap::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(211,69,30,0.10) 0%, transparent 70%);
+  inset: -40px -60px;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(211,69,30,0.10) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 .hero-headline {
   position: relative;
   z-index: 1;
-  font-size: clamp(1.68rem, 5.4vw, 2.88rem);
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: clamp(36px, 5.5vw, 76px);
+  font-weight: 900;
+  line-height: 1.05;
   letter-spacing: -0.01em;
-  color: var(--creme);
-  margin: 0;
-  text-transform: none;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  max-width: 860px;
+  margin: 0 auto 8px;
 }
+.hero-headline .text-terracota { color: var(--terracota); }
 .hero-headline em {
   font-style: normal;
   color: var(--terracota);
@@ -406,16 +419,17 @@ body.fase1-locked {
 /* ── VSL PLAYER ────────────────────────────────────────────── */
 .vsl-section {
   width: 100%;
-  margin-top: 28px;
+  max-width: 860px;
+  margin-top: 0;
 }
 .vsl-player {
   position: relative;
   width: 100%;
-  border-radius: 14px;
+  border-radius: 4px;
   overflow: hidden;
   background: #000;
   aspect-ratio: 16/9;
-  box-shadow: 0 24px 60px rgba(211,69,30,0.3), 0 8px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 0 0 1px rgba(241,218,178,0.08), 0 32px 80px rgba(0,0,0,0.6), 0 0 100px rgba(211,69,30,0.10);
 }
 
 /* ── UNMUTE OVERLAY ────────────────────────────────────────── */
@@ -521,11 +535,12 @@ body.fase1-locked {
 
 .vsl-progress-wrap {
   flex: 1;
-  height: 6px;
+  height: 3px;
   background: rgba(255,255,255,0.15);
-  border-radius: 3px;
+  border-radius: 2px;
   position: relative;
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;
   overflow: hidden;
 }
 .vsl-progress-max {
@@ -548,15 +563,7 @@ body.fase1-locked {
   z-index: 1;
 }
 .vsl-progress-input {
-  position: absolute;
-  inset: -6px 0;
-  width: 100%;
-  height: calc(100% + 12px);
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
-  -webkit-appearance: none;
-  appearance: none;
+  display: none;
 }
 
 .vsl-ctrl-vol {
@@ -584,25 +591,56 @@ body.fase1-locked {
   cursor: pointer;
 }
 
-/* ── VSL HINT — WATCHING NOW ───────────────────────────────── */
+/* ── VSL HINT — TIME HINT ──────────────────────────────────── */
 .vsl-hint {
   text-align: center;
-  margin-top: 16px;
+  margin-top: 20px;
   font-size: 13px;
-  color: rgba(241,218,178,0.45);
+  font-weight: 300;
+  color: rgba(241,218,178,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  letter-spacing: 0.04em;
   animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.7s both;
 }
+.vsl-hint strong { color: rgba(241,218,178,0.85); font-weight: 600; }
 .vsl-hint-dot {
-  width: 8px; height: 8px;
+  width: 6px; height: 6px;
   background: var(--terracota);
   border-radius: 50%;
-  animation: blink 1.5s ease-in-out infinite;
+  animation: blink 1.5s infinite;
   flex-shrink: 0;
 }
+
+/* ── SOCIAL PROOF ABOVE FOLD ──────────────────────────────── */
+.above-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.9s both;
+}
+.avatares { display: flex; }
+.av {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--navy-deep);
+  margin-left: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.av:first-child { margin-left: 0; }
+.social-text { font-size: 13px; font-weight: 300; color: rgba(241,218,178,0.55); }
+.social-text strong { color: var(--creme); font-weight: 600; }
+.stars { color: var(--terracota); font-size: 11px; letter-spacing: 2px; margin-bottom: 2px; }
 
 /* ── PHASE 2 ───────────────────────────────────────────────── */
 .phase-2-content { display: none; }
@@ -1649,7 +1687,8 @@ body.scroll-unlocked {
 }
 @media (max-width: 480px) {
   .logo-navbar-img { height: 22px; }
-  .hero-headline { font-size: clamp(1.62rem, 7vw, 2.16rem); }
+  .hero-headline { font-size: clamp(24px, 7vw, 36px); }
+  .above-social { flex-direction: column; gap: 8px; }
   .hero-headline-wrap { padding: 16px 12px; }
   .vsl-player { border-radius: 10px; }
   .vsl-big-play-btn { width: 56px; height: 56px; }
@@ -1713,9 +1752,10 @@ body.scroll-unlocked {
 
   <div class="fase1-content">
     <!-- BADGE + HEADLINE -->
+    <span class="hero-badge">&#10022; Para especialistas e líderes &#10022;</span>
     <div class="hero-headline-wrap">
       <h1 class="hero-headline">
-        Por que pessoas com metade do seu preparo ocupam o <em>palco</em> que deveria ser <em>seu</em>?
+        Por que pessoas com metade do seu preparo ocupam o <span class="text-terracota">palco</span> que deveria ser <span class="text-terracota">seu</span>?
       </h1>
     </div>
 
@@ -1753,7 +1793,6 @@ body.scroll-unlocked {
             <div class="vsl-progress-played" id="vslProgressPlayed"></div>
             <input type="range" class="vsl-progress-input" id="vslProgressSeek" min="0" max="100" step="0.1" value="0" aria-label="Progresso do vídeo">
           </div>
-          <span class="vsl-time" id="vslTimeDuration">0:00</span>
           <button class="vsl-ctrl-vol" id="vslCtrlVol" aria-label="Volume">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/></svg>
           </button>
@@ -1761,11 +1800,26 @@ body.scroll-unlocked {
         </div>
       </div>
 
-      <!-- Watching now hint -->
-      <p class="vsl-hint" id="vslHint">
+      <!-- Time hint -->
+      <div class="vsl-hint" id="vslHint">
         <span class="vsl-hint-dot"></span>
-        <span id="vslWatchingCount">47 pessoas assistindo agora</span>
-      </p>
+        Assista até o momento especial em <strong>5:27</strong> — a revelação começa ali
+      </div>
+
+      <!-- Social proof -->
+      <div class="above-social">
+        <div class="avatares">
+          <div class="av" style="background:linear-gradient(135deg,#2a1f5e,#D3451E)">M</div>
+          <div class="av" style="background:linear-gradient(135deg,#D3451E,#201747)">R</div>
+          <div class="av" style="background:linear-gradient(135deg,#201747,#D3451E)">A</div>
+          <div class="av" style="background:linear-gradient(135deg,#2a1f5e,#F1DAB2)">F</div>
+          <div class="av" style="background:linear-gradient(135deg,#D3451E,#2a1f5e)">C</div>
+        </div>
+        <div class="social-text">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span><strong>+2.340 líderes</strong> já transformaram sua comunicação</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -2273,11 +2327,9 @@ body.scroll-unlocked {
   var progressMax = document.getElementById('vslProgressMax');
   var progressSeek = document.getElementById('vslProgressSeek');
   var timeCurrent = document.getElementById('vslTimeCurrent');
-  var timeDuration = document.getElementById('vslTimeDuration');
   var volSlider = document.getElementById('vslVolSlider');
   var ctrlVol = document.getElementById('vslCtrlVol');
   var vslHint = document.getElementById('vslHint');
-  var vslWatchingCount = document.getElementById('vslWatchingCount');
 
   var maxWatched = 0;
   var controlsTimeout;
@@ -2295,16 +2347,6 @@ body.scroll-unlocked {
     volSlider.value = 1;
     unmuteOverlay.classList.add('hidden');
   });
-
-  // ── WATCHING COUNT — RANDOMIZED ───────────────────────────
-  var baseCount = Math.floor(Math.random() * 30) + 35; // 35-64
-  vslWatchingCount.textContent = baseCount + ' pessoas assistindo agora';
-  setInterval(function() {
-    baseCount += Math.floor(Math.random() * 5) - 2; // -2 to +2
-    if (baseCount < 28) baseCount = 28 + Math.floor(Math.random() * 8);
-    if (baseCount > 80) baseCount = 80 - Math.floor(Math.random() * 8);
-    vslWatchingCount.textContent = baseCount + ' pessoas assistindo agora';
-  }, 8000);
 
   // ── HELPERS ───────────────────────────────────────────────
   function fmt(s) {
@@ -2361,7 +2403,6 @@ body.scroll-unlocked {
 
   // ── DURATION ──────────────────────────────────────────────
   video.addEventListener('loadedmetadata', function() {
-    timeDuration.textContent = fmt(video.duration);
     progressSeek.max = video.duration;
   });
 
