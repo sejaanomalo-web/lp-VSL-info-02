@@ -1814,10 +1814,10 @@ body.scroll-unlocked {
         </div>
       </div>
 
-      <!-- Time hint -->
+      <!-- Watching now hint -->
       <div class="vsl-hint" id="vslHint">
         <span class="vsl-hint-dot"></span>
-        Assista até o momento especial em <strong>5:27</strong> — a revelação começa ali
+        <span id="vslWatchingCount">17 pessoas assistindo agora</span>
       </div>
 
       <!-- Social proof -->
@@ -1831,7 +1831,7 @@ body.scroll-unlocked {
         </div>
         <div class="social-text">
           <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <span><strong>+2.340 líderes</strong> já transformaram sua comunicação</span>
+          <span><strong>+60.000 pessoas</strong> transformaram sua comunicação</span>
         </div>
       </div>
     </div>
@@ -2354,6 +2354,17 @@ body.scroll-unlocked {
   // ── AUTOPLAY MUTED ────────────────────────────────────────
   video.muted = true;
   video.play().catch(function() {});
+
+  // ── WATCHING COUNT — RANDOMIZED (10-30) ────────────────────
+  var vslWatchingCount = document.getElementById('vslWatchingCount');
+  var watchCount = Math.floor(Math.random() * 21) + 10;
+  vslWatchingCount.textContent = watchCount + ' pessoas assistindo agora';
+  setInterval(function() {
+    watchCount += Math.floor(Math.random() * 5) - 2;
+    if (watchCount < 10) watchCount = 10 + Math.floor(Math.random() * 5);
+    if (watchCount > 30) watchCount = 30 - Math.floor(Math.random() * 5);
+    vslWatchingCount.textContent = watchCount + ' pessoas assistindo agora';
+  }, 7000);
 
   // ── UNMUTE ON CLICK ───────────────────────────────────────
   unmuteOverlay.addEventListener('click', function() {
