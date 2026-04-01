@@ -366,11 +366,13 @@ body.fase1-locked {
 .hero-headline-wrap {
   position: relative;
   padding: 28px 36px;
-  border-left: 3px solid var(--terracota);
-  background: linear-gradient(90deg, rgba(211,69,30,0.08) 0%, transparent 60%);
-  border-radius: 0 12px 12px 0;
+  border-radius: 12px;
   animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.2s both;
   max-width: 740px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .hero-headline-wrap::before {
   content: '';
@@ -1579,7 +1581,7 @@ body.fase1-locked {
 @media (max-width: 480px) {
   .logo-navbar-img { height: 22px; }
   .hero-headline { font-size: clamp(1.35rem, 5.8vw, 1.8rem); }
-  .hero-headline-wrap { padding: 20px 20px; }
+  .hero-headline-wrap { padding: 16px 12px; }
   .vsl-player { border-radius: 10px; }
   .vsl-big-play-btn { width: 56px; height: 56px; }
   .vsl-vol-slider { display: none; }
@@ -1642,8 +1644,8 @@ body.fase1-locked {
 
   <div class="fase1-content">
     <!-- BADGE + HEADLINE -->
-    <span class="hero-badge">&#10022; Para especialistas e líderes &#10022;</span>
     <div class="hero-headline-wrap">
+      <span class="hero-badge">&#10022; Para especialistas e líderes &#10022;</span>
       <h1 class="hero-headline">
         Por que pessoas com metade do seu preparo ocupam o <em>palco</em> que deveria ser <em>seu</em>?
       </h1>
