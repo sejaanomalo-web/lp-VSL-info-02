@@ -347,6 +347,21 @@ body.fase1-locked {
   gap: 0;
 }
 
+/* ── HERO BADGE ────────────────────────────────────────────── */
+.hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  border: 1px solid rgba(211,69,30,0.35);
+  background: rgba(211,69,30,0.06);
+  padding: 8px 20px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
 /* ── HERO HEADLINE ─────────────────────────────────────────── */
 .hero-headline-wrap {
   position: relative;
@@ -357,7 +372,17 @@ body.fase1-locked {
   animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.2s both;
   max-width: 740px;
 }
+.hero-headline-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(211,69,30,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
 .hero-headline {
+  position: relative;
+  z-index: 1;
   font-size: clamp(1.4rem, 4.5vw, 2.4rem);
   font-weight: 700;
   line-height: 1.2;
@@ -1616,7 +1641,8 @@ body.fase1-locked {
   </div>
 
   <div class="fase1-content">
-    <!-- HEADLINE -->
+    <!-- BADGE + HEADLINE -->
+    <span class="hero-badge">&#10022; Para especialistas e líderes &#10022;</span>
     <div class="hero-headline-wrap">
       <h1 class="hero-headline">
         Por que pessoas com metade do seu preparo ocupam o <em>palco</em> que deveria ser <em>seu</em>?
