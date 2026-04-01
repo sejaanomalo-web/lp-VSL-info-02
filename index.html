@@ -76,14 +76,29 @@ p strong { font-weight: 600; color: var(--creme); }
 /* ── CONTAINER ─────────────────────────────────────────────── */
 .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-px); }
 
-/* ── AMBIENT BACKGROUND ────────────────────────────────────── */
+/* ── AMBIENT BACKGROUND — PREMIUM GLOW ─────────────────────── */
 body::before {
   content: '';
   position: fixed;
-  top: -30vh; left: 50%;
+  top: -20vh; left: 50%;
   transform: translateX(-50%);
-  width: 900px; height: 900px;
-  background: radial-gradient(circle, rgba(211,69,30,0.06) 0%, transparent 65%);
+  width: 1200px; height: 1200px;
+  background:
+    radial-gradient(ellipse 600px 400px at 50% 30%, rgba(211,69,30,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 600px at 30% 60%, rgba(211,69,30,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 600px at 70% 60%, rgba(211,69,30,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw; height: 100vh;
+  background:
+    radial-gradient(ellipse 800px 300px at 50% 20%, rgba(211,69,30,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 200px at 50% 80%, rgba(42,31,94,0.4) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -91,9 +106,9 @@ body::before {
 /* ── GRID OVERLAY ──────────────────────────────────────────── */
 .grid-overlay {
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* ── SECTION LABELS ────────────────────────────────────────── */
@@ -222,81 +237,115 @@ body::before {
 }
 .cta-secondary:hover { border-color: rgba(241,218,178,0.5); color: var(--creme); }
 
-/* ── HERO ──────────────────────────────────────────────────── */
-.hero-section {
+/* ── FASE 1 WRAPPER — FULLSCREEN FIXED ─────────────────────── */
+.fase1-wrapper {
   position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  padding: calc(80px + var(--section-py)) 0 var(--section-py);
-  text-align: center;
   background: var(--navy-deep);
 }
-.hero-section .grid-overlay {
+.fase1-wrapper .grid-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.06;
+  opacity: 0.04;
   z-index: 0;
 }
-.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-.hero-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--terracota);
-  border: 1px solid rgba(211,69,30,0.35);
-  padding: 8px 20px;
-  border-radius: 9999px;
-  margin-bottom: 28px;
-  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.1s both;
+/* Lock scroll on body when Fase 1 is active */
+body.fase1-locked {
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
 }
+
+/* ── FASE 1 CONTENT ────────────────────────────────────────── */
+.fase1-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+
+/* ── GLASS CONTAINER — APPLE STYLE ─────────────────────────── */
+.glass-hero {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.07) 0%,
+    rgba(255,255,255,0.03) 40%,
+    rgba(211,69,30,0.04) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 40px 32px 32px;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.glass-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 30% 20%, rgba(211,69,30,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ── HERO HEADLINE ─────────────────────────────────────────── */
 .hero-headline {
-  font-size: clamp(2.8rem, 10vw, 5.5rem);
+  font-size: clamp(1.6rem, 5.5vw, 3rem);
   font-weight: 900;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: var(--creme);
-  animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.25s both;
+  animation: heroFadeUp var(--dur-reveal) var(--ease-out-expo) 0.2s both;
+  margin-bottom: 8px;
 }
 .hero-headline .text-terracota { color: var(--terracota); }
-.hero-sub {
-  margin-top: 16px;
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(241,218,178,0.7);
-  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.4s both;
-}
-.hero-body {
-  margin-top: 20px;
-  font-size: 1.1rem;
-  font-weight: 300;
-  line-height: 1.7;
-  color: var(--creme-dim);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.55s both;
-}
 
 /* ── VSL PLAYER ────────────────────────────────────────────── */
 .vsl-section {
-  padding: 0 0 var(--section-py);
-  background: var(--navy-deep);
-  position: relative;
-  z-index: 1;
+  width: 100%;
+  margin-top: 24px;
+}
+.vsl-player-glass {
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.06) 0%,
+    rgba(255,255,255,0.02) 50%,
+    rgba(211,69,30,0.03) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.06);
 }
 .vsl-player {
   position: relative;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
   background: #000;
   aspect-ratio: 16/9;
-  box-shadow: 0 28px 66px rgba(8,5,22,0.62), 0 0 0 1px rgba(255,255,255,0.06);
 }
 .vsl-player video {
   width: 100%;
@@ -437,16 +486,17 @@ body::before {
   cursor: pointer;
 }
 
-/* ── VSL HINT + COUNTDOWN ──────────────────────────────────── */
+/* ── VSL HINT — WATCHING NOW ───────────────────────────────── */
 .vsl-hint {
   text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  color: rgba(241,218,178,0.55);
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(241,218,178,0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  animation: heroFadeUp var(--dur-slow) var(--ease-out-expo) 0.7s both;
 }
 .vsl-hint-dot {
   width: 8px; height: 8px;
@@ -454,41 +504,6 @@ body::before {
   border-radius: 50%;
   animation: blink 1.5s ease-in-out infinite;
   flex-shrink: 0;
-}
-.vsl-countdown {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 600;
-  color: var(--terracota);
-  font-variant-numeric: tabular-nums;
-}
-
-/* ── LIGHT PROOF ───────────────────────────────────────────── */
-.light-proof {
-  padding: 40px 0 0;
-  background: var(--navy-deep);
-}
-.proof-stats {
-  display: flex;
-  justify-content: center;
-  gap: clamp(24px, 5vw, 56px);
-  text-align: center;
-}
-.proof-stat__num {
-  display: block;
-  font-size: clamp(28px, 5vw, 40px);
-  font-weight: 700;
-  color: var(--creme);
-  line-height: 1;
-}
-.proof-stat__label {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(241,218,178,0.45);
-  margin-top: 6px;
 }
 
 /* ── PHASE 2 ───────────────────────────────────────────────── */
@@ -1342,9 +1357,13 @@ body::before {
 }
 @media (max-width: 480px) {
   .logo-navbar-img { height: 22px; }
-  .hero-headline { font-size: clamp(2.2rem, 12vw, 3.5rem); }
-  .vsl-big-play-btn { width: 64px; height: 64px; }
+  .hero-headline { font-size: clamp(1.3rem, 5.5vw, 1.8rem); }
+  .glass-hero { padding: 24px 16px 20px; border-radius: 18px; }
+  .vsl-player-glass { padding: 6px; border-radius: 14px; }
+  .vsl-player { border-radius: 10px; }
+  .vsl-big-play-btn { width: 56px; height: 56px; }
   .vsl-vol-slider { display: none; }
+  .vsl-section { margin-top: 16px; }
 }
 
 /* ── REDUCED MOTION ────────────────────────────────────────── */
@@ -1380,85 +1399,60 @@ body::before {
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero-section" id="hero">
+<!-- FASE 1 — FULLSCREEN WRAPPER -->
+<div class="fase1-wrapper" id="fase1">
   <div class="grid-overlay" aria-hidden="true"></div>
-  <div class="container">
-    <div class="hero-content">
-      <span class="hero-badge">Para quem já venceu o medo, mas ainda luta contra a própria confusão</span>
+
+  <div class="fase1-content">
+    <!-- GLASS HEADLINE -->
+    <div class="glass-hero">
       <h1 class="hero-headline">
-        Arquiteto<br><span class="text-terracota">de Ideias</span>
+        Você sabe demais para ser ignorado.<br>
+        <span class="text-terracota">Aprenda a falar na altura do que sabe.</span>
       </h1>
-      <p class="hero-sub">Fale, Convença e Envolva</p>
-      <p class="hero-body">
-        Você já sentiu que o seu conhecimento é um oceano, mas na hora de falar, você só consegue entregar gotas? Assista ao vídeo abaixo com atenção.
+    </div>
+
+    <!-- VSL PLAYER -->
+    <div class="vsl-section">
+      <div class="vsl-player-glass">
+        <div class="vsl-player" id="vslPlayer">
+          <video id="vslVideo" preload="metadata" playsinline>
+            <source src="/video/vsl-arquiteto.mp4" type="video/mp4">
+          </video>
+
+          <!-- Big play overlay -->
+          <div class="vsl-big-play" id="vslBigPlay">
+            <button class="vsl-big-play-btn" aria-label="Reproduzir vídeo"></button>
+          </div>
+
+          <!-- Custom controls -->
+          <div class="vsl-controls" id="vslControls">
+            <button class="vsl-ctrl-play" id="vslCtrlPlay" aria-label="Play/Pause">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" id="playIcon"/></svg>
+            </button>
+            <span class="vsl-time" id="vslTimeCurrent">0:00</span>
+            <div class="vsl-progress-wrap" id="vslProgressWrap">
+              <div class="vsl-progress-max" id="vslProgressMax"></div>
+              <div class="vsl-progress-played" id="vslProgressPlayed"></div>
+              <input type="range" class="vsl-progress-input" id="vslProgressSeek" min="0" max="100" step="0.1" value="0" aria-label="Progresso do vídeo">
+            </div>
+            <span class="vsl-time" id="vslTimeDuration">0:00</span>
+            <button class="vsl-ctrl-vol" id="vslCtrlVol" aria-label="Volume">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/></svg>
+            </button>
+            <input type="range" class="vsl-vol-slider" id="vslVolSlider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+          </div>
+        </div>
+      </div>
+
+      <!-- Watching now hint -->
+      <p class="vsl-hint" id="vslHint">
+        <span class="vsl-hint-dot"></span>
+        <span id="vslWatchingCount">47 pessoas assistindo agora</span>
       </p>
     </div>
   </div>
-</section>
-
-<!-- VSL PLAYER -->
-<section class="vsl-section" id="vsl-section">
-  <div class="container">
-    <div class="vsl-player" id="vslPlayer">
-      <video id="vslVideo" preload="metadata" playsinline>
-        <source src="/video/vsl-arquiteto.mp4" type="video/mp4">
-      </video>
-
-      <!-- Big play overlay -->
-      <div class="vsl-big-play" id="vslBigPlay">
-        <button class="vsl-big-play-btn" aria-label="Reproduzir vídeo">
-        </button>
-      </div>
-
-      <!-- Custom controls -->
-      <div class="vsl-controls" id="vslControls">
-        <button class="vsl-ctrl-play" id="vslCtrlPlay" aria-label="Play/Pause">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" id="playIcon"/></svg>
-        </button>
-        <span class="vsl-time" id="vslTimeCurrent">0:00</span>
-        <div class="vsl-progress-wrap" id="vslProgressWrap">
-          <div class="vsl-progress-max" id="vslProgressMax"></div>
-          <div class="vsl-progress-played" id="vslProgressPlayed"></div>
-          <input type="range" class="vsl-progress-input" id="vslProgressSeek" min="0" max="100" step="0.1" value="0" aria-label="Progresso do vídeo">
-        </div>
-        <span class="vsl-time" id="vslTimeDuration">0:00</span>
-        <button class="vsl-ctrl-vol" id="vslCtrlVol" aria-label="Volume">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/></svg>
-        </button>
-        <input type="range" class="vsl-vol-slider" id="vslVolSlider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
-      </div>
-    </div>
-
-    <!-- Hint + countdown -->
-    <p class="vsl-hint" id="vslHint">
-      <span class="vsl-hint-dot"></span>
-      <span>Assista até o momento especial em</span>
-      <span class="vsl-countdown" id="vslCountdown">2:35</span>
-      <span>— a parte mais importante começa ali</span>
-    </p>
-  </div>
-</section>
-
-<!-- LIGHT SOCIAL PROOF -->
-<section class="light-proof" id="lightProof">
-  <div class="container">
-    <div class="proof-stats">
-      <div>
-        <span class="proof-stat__num" data-counter="500">0</span><span class="proof-stat__num" style="font-weight:300;">+</span>
-        <span class="proof-stat__label">Alunos impactados</span>
-      </div>
-      <div>
-        <span class="proof-stat__num" data-counter="16">0</span>
-        <span class="proof-stat__label">Aulas estruturadas</span>
-      </div>
-      <div>
-        <span class="proof-stat__num" data-counter="7">0</span>
-        <span class="proof-stat__label">Dias de garantia</span>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -2293,11 +2287,24 @@ body::before {
   var timeDuration = document.getElementById('vslTimeDuration');
   var volSlider = document.getElementById('vslVolSlider');
   var ctrlVol = document.getElementById('vslCtrlVol');
-  var vslCountdown = document.getElementById('vslCountdown');
   var vslHint = document.getElementById('vslHint');
+  var vslWatchingCount = document.getElementById('vslWatchingCount');
 
   var maxWatched = 0;
   var controlsTimeout;
+
+  // ── SCROLL LOCK — FASE 1 ─────────────────────────────────
+  document.body.classList.add('fase1-locked');
+
+  // ── WATCHING COUNT — RANDOMIZED ───────────────────────────
+  var baseCount = Math.floor(Math.random() * 30) + 35; // 35-64
+  vslWatchingCount.textContent = baseCount + ' pessoas assistindo agora';
+  setInterval(function() {
+    baseCount += Math.floor(Math.random() * 5) - 2; // -2 to +2
+    if (baseCount < 28) baseCount = 28 + Math.floor(Math.random() * 8);
+    if (baseCount > 80) baseCount = 80 - Math.floor(Math.random() * 8);
+    vslWatchingCount.textContent = baseCount + ' pessoas assistindo agora';
+  }, 8000);
 
   // ── HELPERS ───────────────────────────────────────────────
   function fmt(s) {
@@ -2365,12 +2372,6 @@ body::before {
     progressSeek.value = video.currentTime;
     timeCurrent.textContent = fmt(video.currentTime);
 
-    // Countdown: time remaining until unlock
-    if (!unlocked) {
-      var remaining = Math.max(0, UNLOCK_TIME - video.currentTime);
-      vslCountdown.textContent = fmt(remaining);
-    }
-
     // Check unlock
     if (video.currentTime >= UNLOCK_TIME && !unlocked) {
       unlockPhase2();
@@ -2414,6 +2415,9 @@ body::before {
     if (unlocked) return;
     unlocked = true;
 
+    // Unlock scroll
+    document.body.classList.remove('fase1-locked');
+
     // Show phase 2
     var phase2 = document.getElementById('phase2');
     phase2.classList.add('is-unlocked');
@@ -2423,9 +2427,6 @@ body::before {
     for (var i = 0; i < phase2Elements.length; i++) {
       phase2Elements[i].style.display = '';
     }
-
-    // Update hint
-    vslHint.innerHTML = '<span style="color:var(--terracota); font-weight:600;">&#10003; Conteúdo desbloqueado</span>';
 
     // Auto-scroll after animation
     setTimeout(function() {
