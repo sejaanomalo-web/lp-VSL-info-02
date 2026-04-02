@@ -2378,44 +2378,30 @@ img[loading="lazy"] { background: rgba(32,23,71,0.3); }
 </section>
 
 <!-- DEMONSTRAÇÃO DE TÉCNICA -->
-<section id="tecnica" class="section-divider bg-brand-navy py-20 md:py-28">
+<section id="tecnica" class="section-divider py-20 md:py-28" style="background:#F1DAB2;">
   <div class="mx-auto max-w-7xl px-6 md:px-10">
     <div class="mx-auto max-w-3xl text-left md:text-center" data-reveal>
       <p class="section-label">Demonstração de técnica</p>
-      <h2 class="mt-4 text-balance text-3xl font-bold uppercase leading-tight text-brand-cream md:text-5xl">Da frase comum para a frase com força retórica.</h2>
-      <p class="mt-5 text-balance text-lg font-light leading-relaxed text-brand-cream/65">A diferença não está em palavras difíceis, mas em estrutura, ritmo e intenção.</p>
+      <h2 class="mt-4 text-balance text-3xl font-bold uppercase leading-tight md:text-5xl" style="color:#201747;">Da frase comum para a frase com força retórica.</h2>
+      <p class="mt-5 text-balance text-lg font-light leading-relaxed" style="color:rgba(32,23,71,0.7);">A diferença não está em palavras difíceis, mas em estrutura, ritmo e intenção.</p>
     </div>
     <div class="mt-12 grid gap-5 md:grid-cols-2">
-      <div data-reveal><div class="technique-card technique-card--before"><p class="technique-card__label">Antes</p><p class="mt-4 text-2xl font-light italic leading-relaxed text-brand-cream/[0.42]">&ldquo;Eu queria compartilhar algumas ideias que talvez possam te ajudar a melhorar a sua comunicação.&rdquo;</p></div></div>
-      <div data-reveal><div class="technique-card technique-card--after"><p class="technique-card__label">Depois</p><p class="mt-4 text-2xl font-semibold italic leading-relaxed text-brand-cream">&ldquo;Se você quer ser lembrado pelo que sabe, precisa primeiro ser compreendido pelo que diz.&rdquo;</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- DEPOIMENTOS EM MÍDIA -->
-<section id="depoimentos-midia" class="section-divider section--inv py-20 md:py-28">
-  <div class="mx-auto max-w-7xl px-6 md:px-10">
-    <div class="mx-auto max-w-3xl text-left md:text-center" data-reveal>
-      <p class="section-label">Depoimentos em vídeos e fotos</p>
-      <h2 class="mt-4 text-balance text-3xl font-bold uppercase leading-tight text-brand-cream md:text-5xl">Veja quem já saiu do caos para a clareza.</h2>
-    </div>
-  </div>
-  <div class="carousel-wrap" style="margin-top:48px;" id="mediaCarousel">
-    <div class="carousel-fade-left" style="background:linear-gradient(to right,#F1DAB2,transparent);"></div>
-    <div class="carousel-fade-right" style="background:linear-gradient(to left,#F1DAB2,transparent);"></div>
-    <button class="carousel-arrow carousel-arrow--left carousel-arrow--inv" data-carousel-dir="1" aria-label="Rolar para a esquerda">&larr;</button>
-    <button class="carousel-arrow carousel-arrow--right carousel-arrow--inv" data-carousel-dir="-1" aria-label="Rolar para a direita">&rarr;</button>
-    <div style="overflow:hidden; padding:0 48px;">
-      <div class="carousel-track" data-carousel-track data-speed="0.55">
-        <div class="video-testi-card"><div class="video-testi-thumb"><img src="/depoimentos/01.jpg" alt="Depoimento — mensagens de feedback sobre palestra" loading="lazy"></div></div>
-        <div class="video-testi-card" data-video-testi><div class="video-testi-thumb video-testi-thumb--video"><video src="/depoimentos/03.mp4" preload="metadata" playsinline loop></video><button class="play-btn" aria-label="Reproduzir depoimento em vídeo"></button></div></div>
-        <div class="video-testi-card"><div class="video-testi-thumb"><img src="/depoimentos/02.jpg" alt="Depoimento — Luciana sobre curso de comunicação" loading="lazy"></div></div>
-        <div class="video-testi-card" data-video-testi><div class="video-testi-thumb video-testi-thumb--video"><video src="/depoimentos/04.mp4" preload="metadata" playsinline loop></video><button class="play-btn" aria-label="Reproduzir depoimento em vídeo"></button></div></div>
-        <div class="video-testi-card"><div class="video-testi-thumb"><img src="/depoimentos/05.jpg" alt="Depoimento — conversa WhatsApp sobre mentoria" loading="lazy"></div></div>
+      <div data-reveal>
+        <div style="background:#201747; border:1px solid rgba(32,23,71,0.15); border-radius:8px; padding:32px;">
+          <p style="color:rgba(241,218,178,0.45); font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;">Antes</p>
+          <p class="mt-4" style="color:rgba(241,218,178,0.75); font-size:clamp(16px,2vw,22px); font-weight:400; line-height:1.65; font-style:italic;">&ldquo;Eu queria compartilhar algumas ideias que talvez possam te ajudar a melhorar a sua comunicação.&rdquo;</p>
+        </div>
+      </div>
+      <div data-reveal>
+        <div style="background:#150f30; border:1px solid #D3451E; border-radius:8px; padding:32px; box-shadow:0 8px 32px rgba(211,69,30,0.15);">
+          <p style="color:#D3451E; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;">Depois</p>
+          <p class="mt-4" style="color:#F1DAB2; font-size:clamp(16px,2vw,22px); font-weight:400; line-height:1.65; font-style:italic;">&ldquo;Se você quer ser lembrado pelo que sabe, precisa primeiro ser compreendido pelo que diz.&rdquo;</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- FAQ -->
 <section id="objecoes" class="section-divider bg-brand-navy py-20 md:py-28">
@@ -2669,6 +2655,10 @@ img[loading="lazy"] { background: rgba(32,23,71,0.3); }
     // Unlock scroll
     document.body.classList.remove('fase1-locked');
     document.body.classList.add('scroll-unlocked');
+    document.body.style.overflow = '';
+    document.body.style.overflowY = 'auto';
+    document.documentElement.style.overflow = '';
+    document.documentElement.style.overflowY = 'auto';
 
     // Show phase 2
     var phase2 = document.getElementById('phase2');
@@ -2680,18 +2670,31 @@ img[loading="lazy"] { background: rgba(32,23,71,0.3); }
       phase2Elements[i].style.display = '';
     }
 
-    // Auto-scroll with premium easing
-    setTimeout(function() {
-      var fase2Top = phase2.getBoundingClientRect().top + window.pageYOffset;
-      smoothScrollTo(fase2Top, 1000);
-    }, 400);
-
-    // Initialize scroll reveal + counters
-    setTimeout(function() {
-      initRevealObserver();
-      initLabelObserver();
-      initCounters();
-    }, 800);
+    // Force wrapper to recalculate height, then scroll
+    var wrapper = document.getElementById('scroll-wrapper');
+    if (wrapper) {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          document.body.style.height = wrapper.scrollHeight + 'px';
+          var fase2Top = phase2.getBoundingClientRect().top + window.pageYOffset;
+          smoothScrollTo(fase2Top, 1000);
+          setTimeout(function() {
+            initRevealObserver();
+            initLabelObserver();
+            initCounters();
+          }, 500);
+        });
+      });
+    } else {
+      // Fallback without wrapper
+      setTimeout(function() {
+        var fase2Top = phase2.getBoundingClientRect().top + window.pageYOffset;
+        smoothScrollTo(fase2Top, 1000);
+        initRevealObserver();
+        initLabelObserver();
+        initCounters();
+      }, 300);
+    }
   }
 
   // ── PREMIUM SCROLL TO — easeInOutCubic ────────────────────
@@ -2979,7 +2982,12 @@ img[loading="lazy"] { background: rgba(32,23,71,0.3); }
       wrapper = w;
       setHeight();
       window.addEventListener('resize', setHeight);
-      new ResizeObserver(setHeight).observe(w);
+      var ro = new ResizeObserver(function() {
+        requestAnimationFrame(setHeight);
+      });
+      ro.observe(w);
+      var fase2El = document.getElementById('phase2');
+      if (fase2El) ro.observe(fase2El);
     }
 
     function setHeight() {
