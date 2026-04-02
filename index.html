@@ -507,7 +507,7 @@ body.fase1-locked {
   touch-action: pan-y;
 }
 
-/* Controls bar */
+/* Controls bar — fade in/out */
 .vsl-controls {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -517,11 +517,14 @@ body.fase1-locked {
   align-items: center;
   gap: 10px;
   opacity: 0;
-  transition: opacity 300ms;
+  transition: opacity 500ms ease;
   z-index: 10;
+  pointer-events: none;
 }
-.vsl-player:hover .vsl-controls,
-.vsl-player.show-controls .vsl-controls { opacity: 1; }
+.vsl-player.show-controls .vsl-controls {
+  opacity: 1;
+  pointer-events: all;
+}
 
 .vsl-ctrl-play {
   width: 36px; height: 36px;
@@ -2552,7 +2555,16 @@ img[loading="lazy"] { background: rgba(32,23,71,0.3); }
     clearTimeout(controlsTimeout);
     controlsTimeout = setTimeout(function() {
       if (!video.paused) player.classList.remove('show-controls');
-    }, 3000);
+    }, 3500);
+  }
+
+  function toggleControls() {
+    if (player.classList.contains('show-controls')) {
+      player.classList.remove('show-controls');
+      clearTimeout(controlsTimeout);
+    } else {
+      showControls();
+    }
   }
 
   // ── PLAY/PAUSE ────────────────────────────────────────────
@@ -2566,22 +2578,28 @@ img[loading="lazy"] { background: rgba(32,23,71,0.3); }
     showControls();
   }
 
-  ctrlPlay.addEventListener('click', togglePlay);
+  ctrlPlay.addEventListener('click', function(e) {
+    e.stopPropagation();
+    togglePlay();
+  });
   video.addEventListener('click', function() {
-    // If unmute overlay is visible, unmute instead of toggling
+    // If unmute overlay is visible, unmute instead
     if (!unmuteOverlay.classList.contains('hidden')) {
       video.muted = false;
       volSlider.value = 1;
       unmuteOverlay.classList.add('hidden');
       return;
     }
-    togglePlay();
-    showControls();
+    // Toggle controls visibility on click/tap
+    toggleControls();
   });
-  video.addEventListener('play', updatePlayIcon);
+  video.addEventListener('play', function() {
+    updatePlayIcon();
+    showControls(); // briefly show then auto-hide
+  });
   video.addEventListener('pause', function() {
     updatePlayIcon();
-    player.classList.add('show-controls');
+    showControls(); // show controls when paused
   });
 
   // ── DURATION ──────────────────────────────────────────────
@@ -2644,8 +2662,9 @@ img[loading="lazy"] { background: rgba(32,23,71,0.3); }
   });
 
   // ── CONTROLS VISIBILITY ───────────────────────────────────
-  player.addEventListener('mousemove', showControls);
-  player.addEventListener('touchstart', showControls, { passive: true });
+  player.addEventListener('mousemove', function() {
+    if (!video.paused) showControls();
+  });
 
   // ── PHASE 2 UNLOCK ────────────────────────────────────────
   function unlockPhase2() {
