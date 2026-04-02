@@ -78,8 +78,9 @@ tailwind.config = {
 
 /* ── RESET + BASE ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; -webkit-overflow-scrolling: touch; }
+html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
 html, body { overflow-x: hidden; overflow-y: auto; touch-action: pan-y; min-height: 100%; }
+body { overscroll-behavior: none; }
 body {
   font-family: 'Titillium Web', sans-serif;
   font-weight: 300;
@@ -671,17 +672,34 @@ body.scroll-unlocked {
   touch-action: pan-y;
 }
 
-/* ── SCROLL REVEAL ─────────────────────────────────────────── */
+/* ── SCROLL REVEAL — APPLE EASING ──────────────────────────── */
 [data-reveal] {
   opacity: 0;
   transform: translateY(32px);
   filter: blur(2px);
-  transition: opacity var(--dur-slow) var(--ease-out-expo), transform var(--dur-slow) var(--ease-out-expo), filter var(--dur-slow) var(--ease-out-expo);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 [data-reveal].is-revealed {
   opacity: 1;
   transform: translate(0) scale(1);
   filter: blur(0);
+  will-change: auto;
+}
+
+/* Stagger delays */
+[data-reveal-delay="1"] { transition-delay: 0.08s; }
+[data-reveal-delay="2"] { transition-delay: 0.16s; }
+[data-reveal-delay="3"] { transition-delay: 0.24s; }
+[data-reveal-delay="4"] { transition-delay: 0.32s; }
+
+/* Lazy image placeholder */
+img[loading="lazy"] { background: rgba(32,23,71,0.3); }
+
+/* GPU acceleration for key elements */
+.navbar, .vsl-player, .phase-2-content {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* ── SECTION BRIDGE ────────────────────────────────────────── */
@@ -1078,6 +1096,8 @@ body.scroll-unlocked {
   padding: 8px 24px 24px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
 }
 .testi-scroll::-webkit-scrollbar { display: none; }
 .testi-card {
@@ -2660,23 +2680,39 @@ body.scroll-unlocked {
       phase2Elements[i].style.display = '';
     }
 
-    // Auto-scroll after transition completes
+    // Auto-scroll with premium easing
     setTimeout(function() {
-      try {
-        phase2.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } catch(e) {
-        // Fallback for browsers that don't support smooth
-        var topo = phase2.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: topo, behavior: 'smooth' });
-      }
-    }, 500);
+      var fase2Top = phase2.getBoundingClientRect().top + window.pageYOffset;
+      smoothScrollTo(fase2Top, 1000);
+    }, 400);
 
-    // Initialize scroll reveal + counters for newly visible elements
+    // Initialize scroll reveal + counters
     setTimeout(function() {
       initRevealObserver();
       initLabelObserver();
       initCounters();
     }, 800);
+  }
+
+  // ── PREMIUM SCROLL TO — easeInOutCubic ────────────────────
+  function smoothScrollTo(targetY, duration) {
+    var startY = window.pageYOffset;
+    var distance = targetY - startY;
+    var startTime = performance.now();
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function step(currentTime) {
+      var elapsed = currentTime - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = easeInOutCubic(progress);
+      window.scrollTo(0, startY + distance * eased);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
   }
 
   // ── PREVIEW MODE ──────────────────────────────────────────
@@ -2921,6 +2957,51 @@ body.scroll-unlocked {
   if (new URLSearchParams(window.location.search).get('preview') === 'true') {
     setTimeout(initCarousels, 300);
   }
+
+  // ── SMOOTH SCROLL INERTIA (DESKTOP ONLY) ───────────────────
+  (function() {
+    var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    if (isMobile) return;
+
+    var current = 0;
+    var target = 0;
+    var ease = 0.075;
+    var wrapper = null;
+    var running = false;
+
+    function createWrapper() {
+      var body = document.body;
+      var w = document.createElement('div');
+      w.id = 'scroll-wrapper';
+      w.style.cssText = 'position:fixed;top:0;left:0;width:100%;will-change:transform;';
+      while (body.firstChild) w.appendChild(body.firstChild);
+      body.appendChild(w);
+      wrapper = w;
+      setHeight();
+      window.addEventListener('resize', setHeight);
+      new ResizeObserver(setHeight).observe(w);
+    }
+
+    function setHeight() {
+      if (wrapper) document.body.style.height = wrapper.scrollHeight + 'px';
+    }
+
+    function loop() {
+      target = window.scrollY;
+      current += (target - current) * ease;
+      if (Math.abs(target - current) < 0.1) current = target;
+      if (wrapper) wrapper.style.transform = 'translateY(' + (-current) + 'px)';
+      requestAnimationFrame(loop);
+    }
+
+    // Wait for DOM to be fully ready
+    window.addEventListener('load', function() {
+      createWrapper();
+      current = window.scrollY;
+      target = current;
+      requestAnimationFrame(loop);
+    });
+  })();
 
   // ── DYNAMIC PLAYER HEIGHT (DESKTOP ONLY) ───────────────────
   function ajustarAlturaPlayerDesktop() {
