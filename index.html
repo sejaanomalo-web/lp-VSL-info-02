@@ -1691,61 +1691,72 @@ body.scroll-unlocked {
     box-sizing: border-box;
   }
   .fase1-content {
-    padding-top: 88px; /* navbar (~72px) + 16px gap */
-    padding-bottom: 16px;
-    flex: 1;
+    padding-top: 84px;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    height: 100%;
+    gap: 0;
   }
   .hero-badge {
     font-size: 10px;
     padding: 5px 14px;
     margin-bottom: 10px;
+    margin-top: 0;
+    flex-shrink: 0;
+    letter-spacing: 0.22em;
   }
-  .hero-headline {
-    font-size: clamp(28px, 3.2vw, 52px);
-    line-height: 1.06;
-    max-width: 820px;
-    margin: 0 auto 16px;
-    padding: 0;
+  .hero-headline-wrap {
+    flex-shrink: 0;
   }
   .hero-headline-wrap::before {
-    inset: -20px -40px;
+    inset: -16px -32px;
+  }
+  .hero-headline {
+    font-size: clamp(26px, 3vw, 50px);
+    line-height: 1.06;
+    max-width: 820px;
+    margin: 0 auto 12px;
+    padding: 0;
   }
   .vsl-section {
-    max-width: min(740px, 75vw);
+    max-width: min(800px, 88vw);
     margin-top: 0;
+    flex-shrink: 1;
+    flex-grow: 0;
   }
-  .vsl-player {
-    max-height: calc(100vh - 300px);
-  }
+  /* Player height set dynamically by JS — fallback CSS */
   .vsl-player video {
-    max-height: calc(100vh - 300px);
     object-fit: contain;
   }
   .vsl-hint {
     margin-top: 10px;
+    margin-bottom: 0;
     font-size: 11px;
+    flex-shrink: 0;
   }
   .above-social {
-    margin-top: 12px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    overflow: visible;
+    width: 100%;
   }
+  .above-social .avatares { flex-shrink: 0; }
+  .above-social .stars { font-size: 10px; }
+  .above-social .social-text { font-size: 12px; }
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+  .hero-headline { font-size: clamp(24px, 2.8vw, 44px); max-width: 90vw; }
 }
 @media (min-width: 1024px) {
   .modules-layout { grid-template-columns: 1fr 320px; }
-  .vsl-player, .vsl-player video {
-    max-height: calc(100vh - 280px);
-  }
 }
 @media (min-width: 1280px) {
-  .hero-headline {
-    font-size: clamp(32px, 3.5vw, 56px);
-  }
-  .vsl-section {
-    max-width: min(800px, 70vw);
-  }
-  .vsl-player, .vsl-player video {
-    max-height: calc(100vh - 260px);
-  }
+  .hero-headline { font-size: clamp(30px, 3.2vw, 54px); }
+  .vsl-section { max-width: min(800px, 70vw); }
 }
 @media (max-width: 1023px) {
   .modules-layout { grid-template-columns: 1fr; }
@@ -2828,6 +2839,52 @@ body.scroll-unlocked {
   if (new URLSearchParams(window.location.search).get('preview') === 'true') {
     setTimeout(initCarousels, 300);
   }
+
+  // ── DYNAMIC PLAYER HEIGHT (DESKTOP ONLY) ───────────────────
+  function ajustarAlturaPlayerDesktop() {
+    if (window.innerWidth < 768) return;
+
+    var navbarEl = document.querySelector('.navbar');
+    var badgeEl = document.querySelector('.hero-badge');
+    var headlineWrap = document.querySelector('.hero-headline-wrap');
+    var hintEl = document.querySelector('.vsl-hint');
+    var socialEl = document.querySelector('.above-social');
+    var playerEl = document.querySelector('.vsl-player');
+    var videoEl = document.getElementById('vslVideo');
+
+    if (!playerEl) return;
+
+    var vh = window.innerHeight;
+    var navH = navbarEl ? navbarEl.offsetHeight : 72;
+    var badgeH = badgeEl ? badgeEl.offsetHeight : 28;
+    var headH = headlineWrap ? headlineWrap.offsetHeight : 100;
+    var hintH = hintEl ? hintEl.offsetHeight : 28;
+    var socialH = socialEl ? socialEl.offsetHeight : 46;
+
+    // Gaps: badge→headline(10) + headline→player(12) + player→hint(10) + hint→social(10)
+    var gaps = 10 + 12 + 10 + 10;
+    // Padding: top(84=navbar+12) + bottom(12)
+    var padding = navH + 12 + 12;
+
+    var disponivel = vh - navH - badgeH - headH - hintH - socialH - gaps - 24;
+
+    // Respect 16:9 aspect ratio
+    var largura = playerEl.offsetWidth;
+    var maxPorLargura = largura / (16 / 9);
+    var alturaFinal = Math.min(disponivel, maxPorLargura);
+
+    if (alturaFinal > 100) {
+      playerEl.style.maxHeight = alturaFinal + 'px';
+      if (videoEl) {
+        videoEl.style.maxHeight = alturaFinal + 'px';
+      }
+    }
+  }
+
+  window.addEventListener('load', ajustarAlturaPlayerDesktop);
+  window.addEventListener('resize', ajustarAlturaPlayerDesktop);
+  // Run immediately too
+  ajustarAlturaPlayerDesktop();
 
 })();
 </script>
